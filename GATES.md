@@ -136,6 +136,11 @@ that "strong" cannot be redefined after the numbers arrive.
 - **Degree confound.** Every multi-topic or centrality-adjacent metric reports
   partial correlation controlling for `entities.degree`. If the metric loses its
   variance under that control, the claim is dropped (`KNOWLEDGE_BASE.md` §D.5).
+- **Tokenizer.** All token counting in this study uses tiktoken `o200k_base`,
+  the `ENCODING_MODEL` default observed in the installed graphrag 3.1.1
+  (`graphrag/config/defaults.py:39`). E9's token-exact contract and E4's
+  truncation replay are both defined against this encoding. Changing the
+  encoding changes every token number in the study.
 - **Counter-evidence that must appear in every writeup.** Edge et al.
   Experiment 2 found no significant difference between GraphRAG global search and
   TS, and TS has zero L1 and zero L2 by construction. This is prior evidence in
@@ -143,3 +148,55 @@ that "strong" cannot be redefined after the numbers arrive.
   quality. Every results document states it and explains what element-level
   measurement adds that aggregate answer-quality metrics miss
   (`CONTEXT.md` §10, `KNOWLEDGE_BASE.md` §F.1).
+
+---
+
+# Appendix A — E6 linking parameters
+
+**Frozen:** 2026-08-15, before any E6 run, before any index existed, and before
+any linking result had been computed. Same rule as the abort gates above: these
+are not re-tuned after seeing results. If E6's unlink rate comes back
+unfavourable, that is the finding — it is not a reason to move the threshold.
+
+## A.1 Strategy
+
+**`LinkStrategy.TRIPLE` is the E6 default and the only strategy run in E6.**
+
+Gold evidence in GraphRAG-Bench Novel is supplied in two forms per question: an
+`evidence` list of sentences and an `evidence_triple` list of
+`(head, relation, tail)` triples. The sentences are **abstractive restatements,
+not extracts** — measured against their source novels, 0.1% appear as exact
+substrings and 5.4% reach character-n-gram `partial_ratio` >= 85 against
+text-unit-sized windows. KB §H.3's `s ⊂ u.text` formulation therefore does not
+hold on this corpus.
+
+The triples map directly onto what GraphRAG stores and what E6 actually needs to
+intersect with `L`: head and tail are entity surface forms matchable against
+`entities.title`, and the pair identifies a relationship. Sentence matching
+would reach elements only indirectly, through a text unit, at a materially
+higher error rate.
+
+`LinkStrategy.SENTENCE_FUZZY` remains implemented in `linking.py` for a possible
+later ablation. It is not run in E6 and its numbers do not enter the gate.
+
+## A.2 Frozen parameters
+
+| Parameter | Frozen value |
+|:--|:--|
+| Strategy | `LinkStrategy.TRIPLE` |
+| Scorer | `rapidfuzz.fuzz.token_set_ratio` |
+| Threshold | **>= 85** |
+| Matched against | `entities.title` |
+| Normalization | lowercase, punctuation stripped, whitespace collapsed |
+| Corpus scoping | candidate entities restricted to the question's `source` novel |
+
+A triple links only if **both** head and tail clear >= 85. A triple that links
+neither endpoint, or only one, is recorded as unlinked and counts toward the
+unlink rate.
+
+## A.3 Unchanged preconditions
+
+The unlink-rate precondition on G2 stated above is unchanged: **above 15%
+unlinked, E6 is reported as inconclusive rather than as a gate pass or fail.**
+The threshold in A.2 was fixed without knowledge of what unlink rate it
+produces on the real index.

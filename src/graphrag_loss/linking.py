@@ -125,27 +125,20 @@ def load_corpus(path: Path) -> dict[str, str]:
     return {r["corpus_name"]: r["context"] for r in records}
 
 
-_TRIPLE_RE = re.compile(r"^\s*\(?\s*(.+?)\s*,\s*(.+?)\s*,\s*(.+?)\s*\)?\s*\.?\s*$")
-
-
 def parse_triple(raw: str) -> tuple[str, str, str] | None:
     """Parse ``"(head, relation, tail)."`` into its three parts.
 
-    Returns ``None`` when the string does not have exactly three
-    comma-separated parts, so malformed triples count as unlinked rather than
-    being silently coerced into a match.
+    Returns ``None`` unless the string yields *exactly* three non-empty
+    comma-separated parts. A four-part string is not silently collapsed into
+    three: a malformed triple must count as unlinked rather than resolve to
+    elements the gold evidence did not name.
     """
-    text = str(raw).strip()
-    if text.startswith("(") and text.rstrip(".").endswith(")"):
-        text = text.rstrip(".").strip()[1:-1]
+    text = str(raw).strip().rstrip(". \t\n")
+    if text.startswith("(") and text.endswith(")"):
+        text = text[1:-1]
     parts = [p.strip() for p in text.split(",")]
     if len(parts) != 3 or not all(parts):
-        m = _TRIPLE_RE.match(str(raw))
-        if not m:
-            return None
-        parts = [m.group(1).strip(), m.group(2).strip(), m.group(3).strip()]
-        if not all(parts):
-            return None
+        return None
     return parts[0], parts[1], parts[2]
 
 
@@ -241,14 +234,14 @@ def link_triple(
         resolved.append(str(pool.iloc[idx][S.Entities.ID]))
 
     entity_ids = frozenset(resolved)
-    titles_by_id = entities.set_index(S.Entities.ID)[S.Entities.TITLE].to_dict()
-    endpoints = {titles_by_id.get(e, e) for e in resolved} | entity_ids
 
+    # relationships.source/target hold entity *names*, not ids
+    # (graphrag/data_model/relationship.py), so match in the title domain.
+    titles_by_id = entities.set_index(S.Entities.ID)[S.Entities.TITLE].to_dict()
+    endpoint_titles = {str(titles_by_id.get(e, e)) for e in resolved}
     src = relationships[S.Relationships.SOURCE].astype(str)
     tgt = relationships[S.Relationships.TARGET].astype(str)
-    hit = relationships[
-        (src.isin({str(x) for x in endpoints}) & tgt.isin({str(x) for x in endpoints}))
-    ]
+    hit = relationships[src.isin(endpoint_titles) & tgt.isin(endpoint_titles)]
     relationship_ids = frozenset(str(x) for x in hit[S.Relationships.ID])
     return entity_ids, relationship_ids, float(min(scores))
 

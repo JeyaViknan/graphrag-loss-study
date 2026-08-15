@@ -31,6 +31,7 @@ import pandas as pd
 from . import schema as S
 
 __all__ = [
+    "as_list",
     "RunStamp",
     "FrozenIndex",
     "load_frame",
@@ -57,6 +58,25 @@ __all__ = [
 ]
 
 _HEADER_PREFIX = "# "
+
+
+def as_list(value: object) -> list:
+    """Normalise a parquet list-column cell to a plain list.
+
+    pyarrow hands back ``numpy.ndarray`` for list columns, and ``value or []``
+    raises ``ValueError: truth value of an array … is ambiguous`` on any array
+    with more than one element. Every read of a list column goes through here so
+    that idiom never appears in the codebase.
+    """
+    if value is None:
+        return []
+    if isinstance(value, (list, tuple, set)):
+        return list(value)
+    if hasattr(value, "tolist"):  # numpy array / pandas array
+        return list(value.tolist())
+    if isinstance(value, float) and value != value:  # NaN
+        return []
+    return list(value)
 
 
 @dataclass(frozen=True)

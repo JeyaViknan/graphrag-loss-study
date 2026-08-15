@@ -156,13 +156,13 @@ def _phase_arm(args, stamp, eligible, *, arm: str) -> int:
     entities = gio.load_entities(args.frozen_dir)
     relationships = gio.load_relationships(args.frozen_dir)
     loss_pool = sorted(
-        {rid for ids in eligible["in_L2_ids"] for rid in ids}
-        | {rid for ids in eligible["in_L3_ids"] for rid in ids}
+        {rid for ids in eligible["in_L2_ids"] for rid in gio.as_list(ids)}
+        | {rid for ids in eligible["in_L3_ids"] for rid in gio.as_list(ids)}
     )
 
     rows = []
     for _, row in eligible.iterrows():
-        oracle_ids = list(row["in_L2_ids"]) + list(row["in_L3_ids"])
+        oracle_ids = gio.as_list(row["in_L2_ids"]) + gio.as_list(row["in_L3_ids"])
         oracle_text = injection.render_elements(entities, relationships, oracle_ids)
         budget = sum(injection.token_len(t, tokenizer) for t in oracle_text)
         if budget == 0:

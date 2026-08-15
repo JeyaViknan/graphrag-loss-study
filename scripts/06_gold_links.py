@@ -79,8 +79,8 @@ def main() -> int:
     for qid, group in links.groupby("question_id", sort=True):
         gold: set[str] = set()
         for _, row in group.iterrows():
-            gold |= {str(x) for x in row["entity_ids"]}
-            gold |= {str(x) for x in row["relationship_ids"]}
+            gold |= {str(x) for x in gio.as_list(row["entity_ids"])}
+            gold |= {str(x) for x in gio.as_list(row["relationship_ids"])}
         split = loss.intersect(gold, loss_set)
         per_question.append(
             {

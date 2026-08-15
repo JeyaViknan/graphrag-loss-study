@@ -63,7 +63,7 @@ def main() -> int:
 
     for level in levels:
         at_level = index.communities[index.communities[S.Communities.LEVEL] == level]
-        checked = sum(len(r or []) for r in at_level[S.Communities.RELATIONSHIP_IDS])
+        checked = sum(len(gio.as_list(r)) for r in at_level[S.Communities.RELATIONSHIP_IDS])
         v_edges = loss.verify_intra_community_edges(
             index.communities, index.relationships, index.entities, level=level
         )

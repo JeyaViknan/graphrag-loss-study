@@ -143,10 +143,10 @@ def main() -> int:
     inputs = [
         attribution.AttributionInput(
             question_id=str(row["question_id"]),
-            gold_element_ids=frozenset(str(x) for x in (row.get("gold_element_ids") or [])),
-            context_community_ids=frozenset(str(x) for x in (row.get("community_ids") or [])),
+            gold_element_ids=frozenset(str(x) for x in gio.as_list(row.get("gold_element_ids"))),
+            context_community_ids=frozenset(str(x) for x in gio.as_list(row.get("community_ids"))),
             context_element_ids=attribution.reachable_elements(
-                args.frozen_dir, row.get("community_ids") or [], level=args.level
+                args.frozen_dir, gio.as_list(row.get("community_ids")), level=args.level
             ),
         )
         for _, row in failures.iterrows()

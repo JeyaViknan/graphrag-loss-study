@@ -1,0 +1,26 @@
+# --- environment ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# --- frozen index: parquets are large and are provenance-tracked by hash ---
+# MANIFEST.sha256 IS committed; the parquets it covers are not.
+output/*.parquet
+output/lancedb/
+output/logs/
+output/*.log
+
+# --- intermediate artifacts (regenerable from the frozen index) ---
+cache/*.parquet
+cache/*.jsonl
+
+# --- corpora and secrets ---
+data/
+.env
+*.key
+
+# NOT ignored, deliberately: GATES.md, configs/frozen_settings.yaml,
+# output/MANIFEST.sha256, results/, reports/, figs/

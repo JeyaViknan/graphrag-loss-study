@@ -25,7 +25,6 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass
-from itertools import chain
 from pathlib import Path
 
 import numpy as np
@@ -89,41 +88,56 @@ def assert_single_membership(communities: pd.DataFrame, level: int) -> list[str]
 
 
 def verify_intra_community_edges(
-    communities: pd.DataFrame, relationships: pd.DataFrame, *, level: int | None = None
+    communities: pd.DataFrame,
+    relationships: pd.DataFrame,
+    entities: pd.DataFrame,
+    *,
+    level: int | None = None,
 ) -> list[tuple[object, str, str, str]]:
     """Check that every listed relationship is wholly inside its community.
 
-    This is the empirical verification KB §A.1 demands before E1 depends on the
-    set-difference formulation. Returns a list of
-    ``(community, relationship_id, reason, detail)`` violations — empty on a
-    healthy index.
+    This is the empirical verification KB §A.1 demands before E1 relies on the
+    set-difference formulation, and it is the hard abort in E0.5.
+
+    The two frames speak different domains: ``relationships.source``/``target``
+    hold entity *names* (``graphrag/data_model/relationship.py``) while
+    ``communities.entity_ids`` holds entity *ids*. ``entities`` supplies the
+    name-to-id mapping; comparing without it silently passes everything.
+
+    Returns ``(community, relationship_id, reason, detail)`` violations — empty
+    on a healthy index.
     """
     rel_index = relationships.set_index(S.Relationships.ID)
     src = rel_index[S.Relationships.SOURCE].to_dict()
     tgt = rel_index[S.Relationships.TARGET].to_dict()
-
-    ents = communities[S.Communities.ENTITY_IDS]
-    titles_known = set(chain.from_iterable(x for x in ents if x is not None))
-    # Endpoints may be stored as entity titles or ids depending on version;
-    # detect which domain matches and compare in that domain.
-    sample_endpoints = set(list(src.values())[:50])
-    endpoints_are_ids = bool(sample_endpoints & titles_known) or not sample_endpoints
+    id_by_title = {
+        str(t): str(i)
+        for t, i in zip(entities[S.Entities.TITLE], entities[S.Entities.ID], strict=True)
+    }
 
     rows = communities if level is None else communities[communities[S.Communities.LEVEL] == level]
     violations: list[tuple[object, str, str, str]] = []
     for _, row in rows.iterrows():
-        member = set(row[S.Communities.ENTITY_IDS] or [])
+        member = {str(e) for e in (row[S.Communities.ENTITY_IDS] or [])}
         for rid in row[S.Communities.RELATIONSHIP_IDS] or []:
             if rid not in src:
                 violations.append((row[S.Communities.COMMUNITY], str(rid), "unknown-relationship-id", ""))
                 continue
-            u, v = src[rid], tgt[rid]
-            if not endpoints_are_ids:
-                continue
-            if u not in member:
-                violations.append((row[S.Communities.COMMUNITY], str(rid), "source-outside-entity_ids", str(u)))
-            if v not in member:
-                violations.append((row[S.Communities.COMMUNITY], str(rid), "target-outside-entity_ids", str(v)))
+            for endpoint, role in ((src[rid], "source"), (tgt[rid], "target")):
+                entity_id = id_by_title.get(str(endpoint))
+                if entity_id is None:
+                    violations.append(
+                        (row[S.Communities.COMMUNITY], str(rid), f"{role}-not-in-entities", str(endpoint))
+                    )
+                elif entity_id not in member:
+                    violations.append(
+                        (
+                            row[S.Communities.COMMUNITY],
+                            str(rid),
+                            f"{role}-outside-entity_ids",
+                            str(endpoint),
+                        )
+                    )
     return violations
 
 

@@ -132,6 +132,7 @@ srsly==2.5.3
 starlette==1.6.0
 statsmodels==0.14.6
 sympy==1.14.0
+tabulate==0.10.0
 textblob==0.20.1
 thinc==8.3.13
 threadpoolctl==3.6.0

@@ -154,8 +154,8 @@ def elements_for_text_unit(
     if row.empty:
         return frozenset(), frozenset()
     r = row.iloc[0]
-    ents = frozenset(str(x) for x in (r[S.TextUnits.ENTITY_IDS] or []))
-    rels = frozenset(str(x) for x in (r.get(rel_col) or []))
+    ents = frozenset(str(x) for x in io.as_list(r[S.TextUnits.ENTITY_IDS]))
+    rels = frozenset(str(x) for x in io.as_list(r.get(rel_col)))
     return ents, rels
 
 
@@ -264,9 +264,9 @@ def build_gold_links(
     for _, q in questions.iterrows():
         qid = str(q["id"])
         if cfg.strategy is LinkStrategy.TRIPLE:
-            items = list(q.get("evidence_triple") or [])
+            items = io.as_list(q.get("evidence_triple"))
         else:
-            items = list(q.get("evidence") or [])
+            items = io.as_list(q.get("evidence"))
 
         for i, item in enumerate(items):
             if cfg.strategy is LinkStrategy.TRIPLE:

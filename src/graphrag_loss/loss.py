@@ -118,8 +118,8 @@ def verify_intra_community_edges(
     rows = communities if level is None else communities[communities[S.Communities.LEVEL] == level]
     violations: list[tuple[object, str, str, str]] = []
     for _, row in rows.iterrows():
-        member = {str(e) for e in (row[S.Communities.ENTITY_IDS] or [])}
-        for rid in row[S.Communities.RELATIONSHIP_IDS] or []:
+        member = {str(e) for e in io.as_list(row[S.Communities.ENTITY_IDS])}
+        for rid in io.as_list(row[S.Communities.RELATIONSHIP_IDS]):
             if rid not in src:
                 violations.append((row[S.Communities.COMMUNITY], str(rid), "unknown-relationship-id", ""))
                 continue
@@ -151,8 +151,7 @@ def intra_relationship_ids(communities: pd.DataFrame, level: int | None = None) 
     rows = communities if level is None else communities[communities[S.Communities.LEVEL] == level]
     out: set[str] = set()
     for rids in rows[S.Communities.RELATIONSHIP_IDS]:
-        if rids is not None:
-            out.update(rids)
+        out.update(io.as_list(rids))
     return out
 
 
@@ -260,7 +259,7 @@ def entity_text_unit_texts(
     row = entities[entities[S.Entities.ID] == entity_id]
     if row.empty:
         return []
-    ids = row.iloc[0][S.Entities.TEXT_UNIT_IDS] or []
+    ids = io.as_list(row.iloc[0][S.Entities.TEXT_UNIT_IDS])
     lookup = text_units.set_index(S.TextUnits.ID)[S.TextUnits.TEXT]
     return [str(lookup[i]) for i in ids if i in lookup.index]
 
@@ -306,7 +305,7 @@ def multitopic_labels(
 
     rows: list[dict[str, object]] = []
     for _, ent in entities.iterrows():
-        tu_ids = [i for i in (ent[S.Entities.TEXT_UNIT_IDS] or []) if i in lookup.index]
+        tu_ids = [i for i in io.as_list(ent[S.Entities.TEXT_UNIT_IDS]) if i in lookup.index]
         n_units = len(tu_ids)
         if n_units < cfg.min_text_units:
             rows.append(
@@ -402,7 +401,7 @@ def replay_truncation(frozen_dir: Path, cfg: TruncationConfig) -> pd.DataFrame:
 
     rows: list[dict[str, object]] = []
     for _, com in communities.iterrows():
-        rids = list(com[S.Communities.RELATIONSHIP_IDS] or [])
+        rids = io.as_list(com[S.Communities.RELATIONSHIP_IDS])
         ordered = _sorted_edges(relationships, rids)
         used = 0
         admitted = 0
@@ -438,7 +437,7 @@ def dropped_elements(frozen_dir: Path, cfg: TruncationConfig) -> pd.DataFrame:
 
     rows: list[dict[str, object]] = []
     for _, com in communities.iterrows():
-        rids = list(com[S.Communities.RELATIONSHIP_IDS] or [])
+        rids = io.as_list(com[S.Communities.RELATIONSHIP_IDS])
         ordered = _sorted_edges(relationships, rids)
         used = 0
         admitted = True

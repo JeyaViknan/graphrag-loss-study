@@ -83,8 +83,8 @@ def summary_elements(frozen_dir: Path, *, level: int) -> frozenset[str]:
     at_level = communities[communities[S.Communities.LEVEL] == level]
     out: set[str] = set()
     for _, row in at_level.iterrows():
-        out.update(str(x) for x in (row[S.Communities.ENTITY_IDS] or []))
-        out.update(str(x) for x in (row[S.Communities.RELATIONSHIP_IDS] or []))
+        out.update(str(x) for x in io.as_list(row[S.Communities.ENTITY_IDS]))
+        out.update(str(x) for x in io.as_list(row[S.Communities.RELATIONSHIP_IDS]))
     return frozenset(out)
 
 
@@ -98,8 +98,8 @@ def reachable_elements(
     rows = at_level[at_level[S.Communities.COMMUNITY].astype(str).isin(wanted)]
     out: set[str] = set()
     for _, row in rows.iterrows():
-        out.update(str(x) for x in (row[S.Communities.ENTITY_IDS] or []))
-        out.update(str(x) for x in (row[S.Communities.RELATIONSHIP_IDS] or []))
+        out.update(str(x) for x in io.as_list(row[S.Communities.ENTITY_IDS]))
+        out.update(str(x) for x in io.as_list(row[S.Communities.RELATIONSHIP_IDS]))
     return frozenset(out)
 
 

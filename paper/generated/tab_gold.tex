@@ -1,0 +1,18 @@
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & & \multicolumn{2}{c}{$\Pr[Y(q)\cap L_\ell\neq\emptyset]$} & \\
+\cmidrule(lr){3-4}
+Slice & $n$ & GraphRAG & RGI & Change [95\% CI] \\
+\midrule
+Level 0 (root) & 840 & 95.6 & 48.3 & $-$47.3 [43.9, 50.6] \\
+Level 1 & 840 & 88.1 & 23.8 & $-$64.3 [61.0, 67.5] \\
+Level 2 (default) & 840 & 79.9 & 15.2 & $-$64.6 [61.4, 67.9] \\
+Level 3 & 840 & 79.4 & 14.9 & $-$64.5 [61.2, 67.7] \\
+\midrule
+\multicolumn{5}{@{}l}{\emph{Level 2 by question type}} \\
+Complex Reasoning & 317 & 84.5 & 17.0 & $-$67.5 \\
+Contextual Summarize & 183 & 79.8 & 13.7 & $-$66.1 \\
+Creative Generation & 52 & 98.1 & 15.4 & $-$82.7 \\
+Fact Retrieval & 288 & 71.5 & 14.2 & $-$57.3 \\
+\bottomrule
+\end{tabular}

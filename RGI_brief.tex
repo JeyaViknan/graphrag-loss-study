@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.1cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{ink}{HTML}{1D1D1F}
+\definecolor{ink2}{HTML}{6E6E73}
+\definecolor{lost}{HTML}{C2362D}
+\definecolor{kept}{HTML}{17875A}
+\definecolor{accent}{HTML}{3056D3}
+\color{ink}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{12pt}{4pt}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\subsection}{0pt}{8pt}{1pt}
+\setlist[itemize]{leftmargin=1.1em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.4em,itemsep=2pt,topsep=2pt}
+\renewcommand{\arraystretch}{1.08}
+
+\newtcolorbox{keybox}{colback=accent!4,colframe=accent!35,boxrule=0.4pt,arc=2pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,before skip=6pt,after skip=6pt}
+
+\newcommand{\up}[1]{\textcolor{kept}{\textbf{#1}}}
+\newcommand{\dn}[1]{\textcolor{lost}{#1}}
+
+\begin{document}
+\thispagestyle{empty}
+
+{\LARGE\bfseries Residual Graph Indexing}\\[2pt]
+{\large\color{ink2} What GraphRAG loses, how we get it back, and what the simulation shows}\\[6pt]
+{\color{ink2}\small Project review \textbullet\ GraphRAG X-Ray \textbullet\ \today}
+
+\vspace{4pt}
+\hrule
+\vspace{2pt}
+
+\section{The story in four steps}
+
+\subsection{Step 1 --- GraphRAG never reads your documents at answer time}
+It reads \emph{summaries}. While building the index, it groups entities into communities and writes one summary per community. A broad question is answered by reading those summaries, not the original graph.
+
+\subsection{Step 2 --- Writing a summary throws facts away}
+Two things get dropped, and nobody is told:
+\begin{itemize}
+  \item \textbf{Boundary loss.} A relationship between two entities in \emph{different} communities belongs to neither summary. It is simply not written down.
+  \item \textbf{Budget loss.} Each summary gets 8{,}000 tokens of input. Bigger communities don't fit, so GraphRAG sorts relationships by how well-connected they are and cuts the list when the budget runs out. The least-connected facts go first --- and those are usually the specific details a question needs.
+\end{itemize}
+
+\subsection{Step 3 --- Climbing the hierarchy only moves the loss}
+Small communities rarely overflow the budget, but they have many boundaries. Merging them removes boundaries but makes each summary compress far more. In our simulation, the leaf level loses 248 relationships at boundaries and none to the budget; the root level loses none at boundaries and 775 to the budget.
+
+\begin{keybox}
+\textbf{Choosing a level decides \emph{where} the loss happens. It does not decide \emph{whether} it happens.}
+\end{keybox}
+
+\subsection{Step 4 --- No search engine can fix this}
+If a fact was never written into any summary, no amount of better searching can find it. Better ranking changes \emph{which} summaries are read, never \emph{what is inside them}. The problem is in the index, so the fix has to be in the index too.
+
+\section{Our solution in plain words}
+
+Think of video compression. A video doesn't store every frame in full: it stores \textbf{keyframes} plus small \textbf{residuals} that carry exactly what a keyframe couldn't. Nothing is lost, and the extra data stays small.
+
+We do the same for GraphRAG. The community summaries are the keyframes. We add the residual: an exact record of everything the summaries left out.
+
+\begin{enumerate}
+  \item \textbf{Audit the loss.} Compare the full relationship list with what the communities contain. This is a set comparison over files GraphRAG already writes --- no AI calls, no guessing.
+  \item \textbf{Bridge records.} For the most important relationships lost at boundaries, add one short line to \emph{both} communities' summaries: ``\textsc{source} --- relation --- \textsc{target}''. Built from text GraphRAG already extracted, so no summary is rewritten.
+  \item \textbf{Graceful truncation.} Instead of cutting the list dead at the budget, write full descriptions until about 80\% of the budget, then one-line compact facts for the rest. Nothing GraphRAG would have kept is displaced.
+  \item \textbf{Residual store.} Whatever still doesn't fit is stored next to the communities it touches. At answer time, the most relevant residual facts \emph{replace} the weakest part of the context, so the number of tokens stays exactly the same.
+  \item \textbf{Coverage certificate.} At build time we check that every relationship is in a summary, a bridge record, or the residual store. If one is unaccounted for, the build fails.
+\end{enumerate}
+
+\begin{keybox}
+\textbf{Same summaries. Same token budget. No extra AI calls. And the index can prove it didn't quietly forget anything.}
+\end{keybox}
+
+\section{What the simulation shows}
+
+A simulated index of a novel: 360 entities, 905 relationships, 48 questions, an 8{,}000-token summary budget, and the three most relevant summaries read per question. \emph{These are simulated figures that show how the mechanism behaves --- not experimental results.}
+
+\subsection{Across the hierarchy}
+
+\begin{center}\small
+\begin{tabular}{lrrrrrr}
+\toprule
+& & \multicolumn{2}{c}{\textbf{Relationships kept}} & \multicolumn{2}{c}{\textbf{Evidence found}} & \textbf{Answers right} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-7}
+\textbf{Level} & \textbf{Communities} & GraphRAG & Ours & GraphRAG & Ours & GraphRAG $\rightarrow$ Ours \\
+\midrule
+Leaf             & 22 & 72.6\% & \up{78.8\%} & 49.2\% & \up{75.7\%} & 41.7\% $\rightarrow$ \up{56.3\%} \\
+Community        &  8 & 84.2\% & \up{88.4\%} & 69.1\% & \up{84.7\%} & 52.1\% $\rightarrow$ \up{62.5\%} \\
+Higher community &  3 & 46.3\% & \up{65.2\%} & 80.2\% & \up{87.0\%} & 60.4\% $\rightarrow$ \up{66.7\%} \\
+Root             &  1 & 14.4\% & \up{23.4\%} & 54.3\% & \up{71.2\%} & 43.8\% $\rightarrow$ \up{50.0\%} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Read it like this.} GraphRAG's own numbers swing wildly with the level --- it keeps 84\% of relationships one level up, but only 14\% at the root, where one summary must cover everything. Our version is better at every level, and the gap widens exactly where compression bites hardest.
+
+\subsection{How much of the summary to spend on bridges}
+
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Bridge allowance} (leaf) & \textbf{Relationships kept} & \textbf{Evidence found} & \textbf{Answers right} \\
+\midrule
+0\% (no bridges)  & 72.6\% & 49.2\% & 41.7\% \\
+6\% of input      & 78.3\% & 75.7\% & 56.3\% \\
+12\% of input     & 78.8\% & 75.7\% & 56.3\% \\
+24\% of input     & 78.8\% & 75.7\% & 56.3\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{The fix is cheap.} Six percent of the summary buys the whole benefit. Spending more changes nothing, because there aren't many important boundary-crossing relationships to write down.
+
+\subsection{Which relationships to bridge}
+
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Bridge only if mentioned} (leaf) & \textbf{Relationships kept} & \textbf{Evidence found} & \textbf{Answers right} \\
+\midrule
+3+ times & 85.0\% & 89.6\% & 66.7\% \\
+4+ times (our default) & 78.8\% & 75.7\% & 56.3\% \\
+5+ times & 75.8\% & 61.4\% & 43.8\% \\
+never (bridges off) & 72.6\% & 49.2\% & 41.7\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{This is the knob that matters.} \emph{Which} facts you bridge matters far more than how many tokens you allow. Loosening the rule from ``mentioned 5 times'' to ``3 times'' lifts correct answers from 43.8\% to 66.7\%, at the same cost.
+
+\subsection{Detail versus coverage}
+
+\begin{center}\small
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{\textbf{Higher community}} & \multicolumn{2}{c}{\textbf{Root}} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+\textbf{Full descriptions until} & Kept & Evidence found & Kept & Evidence found \\
+\midrule
+60\% of budget  & 81.7\% & 89.2\% & 33.7\% & 89.1\% \\
+80\% (our default) & 65.2\% & 87.0\% & 23.4\% & 71.2\% \\
+100\% (no compact facts) & 48.0\% & 85.6\% & 14.5\% & 54.3\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Short beats absent.} Switching to one-line facts earlier keeps far more of the graph. At the root, evidence found rises from 54\% to 89\% --- the same budget, just spent on more facts in less detail.
+
+\subsection{Two things that don't help}
+
+\begin{center}\small
+\begin{tabular}{lrr@{\hskip 24pt}lrr}
+\toprule
+\textbf{Read more summaries} & GraphRAG & Ours & \textbf{Buy a bigger budget} & GraphRAG & Ours \\
+\midrule
+2 summaries & 48.5\% & 74.5\% & 4{,}000 tokens  & 6.3\%  & 11.6\% \\
+3 summaries & 49.2\% & 75.7\% & 8{,}000 tokens  & 14.4\% & 23.4\% \\
+6 summaries & 49.2\% & 76.2\% & 16{,}000 tokens & 29.9\% & 48.8\% \\
+\bottomrule
+\end{tabular}\\[2pt]
+{\footnotesize Left: evidence found at leaf level. Right: relationships kept at root level.}
+\end{center}
+
+\begin{keybox}
+\textbf{Reading three times as many summaries moves GraphRAG's evidence score by 0.7 of a point} (48.5\% $\rightarrow$ 49.2\%). You cannot search your way out of this. Doubling the token budget does help --- but you pay for it on every single query, while a residual costs nothing extra.
+\end{keybox}
+
+\section{What we take from this}
+
+\begin{enumerate}
+  \item The loss is real at every level, and worst exactly where compression is heaviest.
+  \item Repair is cheap: about 6\% of a summary's budget.
+  \item Choosing \emph{which} facts to rescue matters more than the budget you give them.
+  \item A short fact beats a missing one: compact facts buy large coverage gains.
+  \item Better search doesn't help, which is the strongest sign this is an indexing problem.
+\end{enumerate}
+
+\section{Future work}
+
+\begin{enumerate}
+  \item \textbf{Prove the problem is worth solving.} Run the four stop criteria we committed to git before collecting any data: is the lost information already implied by summaries; do real questions need it; is indexing the cause of wrong answers; does restoring it actually change answers.
+  \item \textbf{Build it for real.} Implement the audit, bridge records, graceful truncation, residual store and coverage certificate as a pass over GraphRAG's own output files.
+  \item \textbf{Test it fairly.} Compare against GraphRAG, against a placebo that injects random lost facts of identical size, and against LightRAG --- reporting results by question type.
+  \item \textbf{Tune the knobs on real data.} The bridge rule and the full-description cutoff are the two settings that mattered most here.
+  \item \textbf{Learn what to rescue.} Replace the hand-set rule with salience learned from past questions.
+  \item \textbf{Cover multi-topic entities.} Add pointers so an entity's other roles are visible in the communities it wasn't filed under.
+  \item \textbf{Replicate.} Repeat on a second corpus (medical) to show the result isn't specific to one dataset.
+\end{enumerate}
+
+\vspace{6pt}
+\hrule
+\vspace{4pt}
+{\footnotesize\color{ink2} All figures here come from a simulation of the mechanism, not from an experiment on a real index. The stop criteria and evaluation plan above are how we intend to establish the result.}
+
+\end{document}

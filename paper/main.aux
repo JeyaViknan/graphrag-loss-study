@@ -1,0 +1,192 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{lewis2020rag,gao2023ragsurvey}
+\citation{edge2024graphrag}
+\citation{traag2019leiden}
+\citation{graphrag311}
+\citation{grenat2026issue}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\citation{wiegand2003h264}
+\citation{xiang2026graphragbench}
+\citation{edge2024graphrag,graphrag311}
+\citation{traag2019leiden}
+\citation{chung2019graspy}
+\citation{edge2024lazygraphrag}
+\citation{edge2024graphrag}
+\citation{han2025ragvsgraphrag,xiang2026graphragbench,zhou2025indepth}
+\citation{xiang2026graphragbench}
+\citation{guo2024lightrag}
+\citation{gutierrez2024hipporag}
+\citation{sarthi2024raptor}
+\citation{he2024gretriever}
+\citation{wang2026archrag}
+\citation{peng2024graphragsurvey}
+\citation{huang2025hirag}
+\citation{zhang2026leanrag}
+\citation{li2026deepgraphrag}
+\citation{wang2026omd}
+\citation{hossain2026core}
+\citation{edge2024graphrag}
+\citation{huang2025hirag}
+\citation{zhang2026leanrag}
+\citation{li2026deepgraphrag}
+\citation{wang2026omd}
+\citation{hossain2026core}
+\citation{xu2024recomp}
+\citation{chen2024densex}
+\citation{liu2024lost}
+\citation{fortunato2007resolution}
+\citation{good2010modularity,fortunato2010community}
+\citation{guimera2005cartography}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{II}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Community-summary GraphRAG}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Other graph-based retrieval}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Work on community boundaries}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces GraphRAG's indexing pipeline, the six places where content leaves the path to an answer, and the four components RGI adds. Summaries, clustering and retrieval are unchanged.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{3}{GraphRAG's indexing pipeline, the six places where content leaves the path to an answer, and the four components RGI adds. Summaries, clustering and retrieval are unchanged}{figure.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces How related systems treat the space between communities}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:related}{{1}{3}{How related systems treat the space between communities}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Compression, granularity and community structure}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}Proposed Methodology}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{III}{3}{Proposed Methodology}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}A Model of Index-Time Loss}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:model}{{\mbox  {III-A}}{3}{A Model of Index-Time Loss}{subsection.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}1}Setting}{3}{subsubsection.3.1.1}\protected@file@percent }
+\newlabel{def:status}{{1}{3}{Status}{definition.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Abbreviations and symbols}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:notation}{{2}{4}{Abbreviations and symbols}{table.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-A}2}Three propositions}{4}{subsubsection.3.1.2}\protected@file@percent }
+\newlabel{prop:unreach}{{1}{4}{Absent evidence is unreachable}{proposition.1}{}}
+\newlabel{prop:mono}{{2}{4}{Boundary loss grows toward the leaves}{proposition.2}{}}
+\newlabel{prop:select}{{3}{4}{Selection bound}{proposition.3}{}}
+\citation{liu2024lost}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Residual Graph Indexing}{5}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:rgi}{{\mbox  {III-B}}{5}{Residual Graph Indexing}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}1}Requirements}{5}{subsubsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}2}Loss audit}{5}{subsubsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}3}Two-tier summary input}{5}{subsubsection.3.2.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Layout of one summary input. GraphRAG adds items until the first one that overflows $B$ and drops everything from there on. RGI stops full items at $fB$. In the space that remains it first writes compact facts for whatever the shorter prefix lost, then bridge records, then further compact facts, and the total stays within $B$.}}{5}{figure.2}\protected@file@percent }
+\newlabel{fig:layout}{{2}{5}{Layout of one summary input. GraphRAG adds items until the first one that overflows $B$ and drops everything from there on. RGI stops full items at $fB$. In the space that remains it first writes compact facts for whatever the shorter prefix lost, then bridge records, then further compact facts, and the total stays within $B$}{figure.2}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces RGI summary input for community $c$ at level $\ell $}}{5}{algorithm.1}\protected@file@percent }
+\newlabel{alg:rgi}{{1}{5}{Two-tier summary input}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}4}Bridge records}{5}{subsubsection.3.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}5}Residual store and query-time substitution}{5}{subsubsection.3.2.5}\protected@file@percent }
+\citation{xiang2026graphragbench}
+\citation{efron1979bootstrap}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}6}Coverage certificate}{6}{subsubsection.3.2.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-B}7}Guarantees}{6}{subsubsection.3.2.7}\protected@file@percent }
+\newlabel{prop:guarantees}{{4}{6}{Guarantees}{proposition.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Experimental Setup}{6}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:setup}{{\mbox  {III-C}}{6}{Experimental Setup}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}1}Corpus}{6}{subsubsection.3.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}2}Index construction}{6}{subsubsection.3.3.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Census corpus and index (GraphRAG 3.1.1 fast pipeline)}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:corpus}{{3}{6}{Census corpus and index (GraphRAG 3.1.1 fast pipeline)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}3}Measurements}{6}{subsubsection.3.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}4}Gold evidence}{6}{subsubsection.3.3.4}\protected@file@percent }
+\citation{nosek2018prereg}
+\citation{cohen1960kappa}
+\citation{efron1979bootstrap}
+\citation{mcnemar1947}
+\citation{he2021deberta}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\mbox  {III-C}5}RGI configuration}{7}{subsubsection.3.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Pre-registered Protocol for the Answer-Level Test}{7}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:protocol}{{\mbox  {III-D}}{7}{Pre-registered Protocol for the Answer-Level Test}{subsection.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Kill criteria committed before any data existed}}{7}{table.4}\protected@file@percent }
+\newlabel{tab:gates}{{4}{7}{Kill criteria committed before any data existed}{table.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Results and Discussion}{7}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{IV}{7}{Results and Discussion}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}How much each level loses}{7}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:census}{{\mbox  {IV-A}}{7}{How much each level loses}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Share of relationships (\%) by status at $B=8{,}000$, pooled over novels. Bnd.\ = boundary, Sub.\ = sub-summary only, Bud.\ = budget. The last column is the mean over novels of RGI's in-scope share minus GraphRAG's, with a 95\% bootstrap interval. Level~2 is the default.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:census}{{5}{7}{Share of relationships (\%) by status at $B=8{,}000$, pooled over novels. Bnd.\ = boundary, Sub.\ = sub-summary only, Bud.\ = budget. The last column is the mean over novels of RGI's in-scope share minus GraphRAG's, with a 95\% bootstrap interval. Level~2 is the default}{table.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Where every relationship ends up at each query level, pooled over 20{} novels. Black, grey and green segments are in scope and red segments are out of scope. LCC = largest connected component. Since RGI leaves the clustering alone and only changes how inputs use their budget, the boundary segment shrinks only by the relationships that bridge records carry.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:census}{{3}{7}{Where every relationship ends up at each query level, pooled over \NNovels {} novels. Black, grey and green segments are in scope and red segments are out of scope. LCC = largest connected component. Since RGI leaves the clustering alone and only changes how inputs use their budget, the boundary segment shrinks only by the relationships that bridge records carry}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Selection in the standard pipeline}{7}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:select}{{\mbox  {IV-B}}{7}{Selection in the standard pipeline}{subsection.4.2}{}}
+\citation{grenat2026issue}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Strongest form in which evidence reaches a selected input (\%), $B=8{,}000$; the tiers are those of Section~\ref {sec:model}}}{8}{table.6}\protected@file@percent }
+\newlabel{tab:exposure}{{6}{8}{Strongest form in which evidence reaches a selected input (\%), $B=8{,}000$; the tiers are those of Section~\ref {sec:model}}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Within-community relationships reaching the standard pipeline's summary input (GraphRAG 3.1.1 \texttt  {build\_local\_context}). Comm.\ = communities; Intra rels = within-community relationships; Cross rels in = cross-community relationships placed in inputs}}{8}{table.7}\protected@file@percent }
+\newlabel{tab:selection}{{7}{8}{Within-community relationships reaching the standard pipeline's summary input (GraphRAG 3.1.1 \texttt {build\_local\_context}). Comm.\ = communities; Intra rels = within-community relationships; Cross rels in = cross-community relationships placed in inputs}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Recovery at an unchanged budget}{8}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:recover}{{\mbox  {IV-C}}{8}{Recovery at an unchanged budget}{subsection.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces In-scope share as the summary input budget grows from 4k to 32k tokens. At level~2, RGI with 4k tokens already keeps more relationships in scope than GraphRAG with 32k.}}{8}{figure.4}\protected@file@percent }
+\newlabel{fig:budget}{{4}{8}{In-scope share as the summary input budget grows from 4k to 32k tokens. At level~2, RGI with 4k tokens already keeps more relationships in scope than GraphRAG with 32k}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Do questions need the lost content?}{8}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:gold}{{\mbox  {IV-D}}{8}{Do questions need the lost content?}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Questions with at least one gold relationship out of scope (\%), among the 840{} questions whose gold evidence resolves}}{9}{table.8}\protected@file@percent }
+\newlabel{tab:gold}{{8}{9}{Questions with at least one gold relationship out of scope (\%), among the \NGoldQ {} questions whose gold evidence resolves}{table.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Share of questions with a gold relationship out of scope, by query level, among questions whose gold evidence links to the graph.}}{9}{figure.5}\protected@file@percent }
+\newlabel{fig:gold}{{5}{9}{Share of questions with a gold relationship out of scope, by query level, among questions whose gold evidence links to the graph}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-E}}Sensitivity and ablations}{9}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:ablate}{{\mbox  {IV-E}}{9}{Sensitivity and ablations}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Sensitivity to text-unit size (in-scope share, \%, $B=8{,}000$)}}{9}{table.9}\protected@file@percent }
+\newlabel{tab:chunk}{{9}{9}{Sensitivity to text-unit size (in-scope share, \%, $B=8{,}000$)}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Ablations at $B=8{,}000$ (\% of relationships). $b$ = bridge share, $f$ = full-item cutoff, $m$ = minimum support; defaults $b=0.12$, $f=0.8$, $m=2$}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:ablation}{{10}{9}{Ablations at $B=8{,}000$ (\% of relationships). $b$ = bridge share, $f$ = full-item cutoff, $m$ = minimum support; defaults $b=0.12$, $f=0.8$, $m=2$}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-F}}From loss to answers: a controlled simulation}{9}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:sim}{{\mbox  {IV-F}}{9}{From loss to answers: a controlled simulation}{subsection.4.6}{}}
+\citation{edge2024graphrag}
+\citation{guo2024lightrag}
+\citation{xiang2026graphragbench}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Controlled simulation (synthetic data, 48{} questions, \%). Orig.\ = original GraphRAG; numbers in parentheses are communities per level}}{10}{table.11}\protected@file@percent }
+\newlabel{tab:sim}{{11}{10}{Controlled simulation (synthetic data, \SimQuestions {} questions, \%). Orig.\ = original GraphRAG; numbers in parentheses are communities per level}{table.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Share of evidence retrieved at each level in the simulation. The data are synthetic, and the figure illustrates the mechanism only.}}{10}{figure.6}\protected@file@percent }
+\newlabel{fig:sim}{{6}{10}{Share of evidence retrieved at each level in the simulation. The data are synthetic, and the figure illustrates the mechanism only}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-G}}Discussion}{10}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:discussion}{{\mbox  {IV-G}}{10}{Discussion}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-H}}Threats to Validity}{10}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:threats}{{\mbox  {IV-H}}{10}{Threats to Validity}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Conclusion}{10}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{V}{10}{Conclusion}{section.5}{}}
+\bibstyle{IEEEtran}
+\bibdata{refs}
+\bibcite{lewis2020rag}{1}
+\bibcite{gao2023ragsurvey}{2}
+\bibcite{edge2024graphrag}{3}
+\bibcite{traag2019leiden}{4}
+\bibcite{graphrag311}{5}
+\bibcite{grenat2026issue}{6}
+\bibcite{wiegand2003h264}{7}
+\bibcite{xiang2026graphragbench}{8}
+\bibcite{chung2019graspy}{9}
+\bibcite{edge2024lazygraphrag}{10}
+\bibcite{han2025ragvsgraphrag}{11}
+\bibcite{zhou2025indepth}{12}
+\bibcite{guo2024lightrag}{13}
+\bibcite{gutierrez2024hipporag}{14}
+\bibcite{sarthi2024raptor}{15}
+\bibcite{he2024gretriever}{16}
+\bibcite{wang2026archrag}{17}
+\bibcite{peng2024graphragsurvey}{18}
+\bibcite{huang2025hirag}{19}
+\bibcite{zhang2026leanrag}{20}
+\bibcite{li2026deepgraphrag}{21}
+\bibcite{wang2026omd}{22}
+\bibcite{hossain2026core}{23}
+\bibcite{xu2024recomp}{24}
+\bibcite{chen2024densex}{25}
+\bibcite{liu2024lost}{26}
+\bibcite{fortunato2007resolution}{27}
+\bibcite{good2010modularity}{28}
+\bibcite{fortunato2010community}{29}
+\bibcite{guimera2005cartography}{30}
+\bibcite{efron1979bootstrap}{31}
+\bibcite{nosek2018prereg}{32}
+\bibcite{cohen1960kappa}{33}
+\bibcite{mcnemar1947}{34}
+\bibcite{he2021deberta}{35}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Future Work}{11}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:future}{{\mbox  {V-A}}{11}{Future Work}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Data and Code Availability}{11}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:data}{{\mbox  {V-B}}{11}{Data and Code Availability}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {section}{REFERENCES}{11}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{Jeyaviknan SR}{12}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{Adithya DS}{12}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{Aatreyee Dev}{12}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{Karthika Veeramani}{12}{section*.3}\protected@file@percent }
+\gdef \@abspage@last{12}

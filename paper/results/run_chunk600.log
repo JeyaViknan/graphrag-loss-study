@@ -1,0 +1,109 @@
+Novel-30752: 77 units, 287 entities, 3888 relationships, levels 0-5, 77 communities, 3.4s
+Novel-51410: 151 units, 424 entities, 4644 relationships, levels 0-3, 108 communities, 4.2s
+Novel-58553: 86 units, 302 entities, 3644 relationships, levels 0-3, 73 communities, 3.1s
+Novel-10762: 142 units, 176 entities, 649 relationships, levels 0-2, 38 communities, 1.3s
+Novel-26183: 218 units, 1023 entities, 29691 relationships, levels 0-4, 264 communities, 19.1s
+Novel-29973: 74 units, 306 entities, 5706 relationships, levels 0-4, 69 communities, 4.4s
+Novel-10146: 104 units, 495 entities, 7612 relationships, levels 0-3, 113 communities, 5.8s
+Novel-47676: 156 units, 492 entities, 7327 relationships, levels 0-3, 123 communities, 6.4s
+Novel-10321: 153 units, 214 entities, 1261 relationships, levels 0-2, 47 communities, 1.9s
+Novel-8559: 102 units, 231 entities, 1714 relationships, levels 0-3, 56 communities, 1.9s
+Novel-47558: 65 units, 171 entities, 1405 relationships, levels 0-2, 40 communities, 1.7s
+Novel-25646: 46 units, 32 entities, 53 relationships, levels 0-0, 1 communities, 0.2s
+Novel-5956: 118 units, 145 entities, 615 relationships, levels 0-2, 32 communities, 1.1s
+Novel-2544: 159 units, 164 entities, 771 relationships, levels 0-2, 41 communities, 1.6s
+Novel-41603: 132 units, 117 entities, 416 relationships, levels 0-3, 28 communities, 1.2s
+Novel-54537: 84 units, 234 entities, 2840 relationships, levels 0-2, 52 communities, 2.8s
+Novel-10356: 141 units, 628 entities, 14811 relationships, levels 0-5, 159 communities, 10.4s
+Novel-40700: 76 units, 209 entities, 2375 relationships, levels 0-2, 54 communities, 2.8s
+Novel-4128: 46 units, 208 entities, 2807 relationships, levels 0-3, 54 communities, 2.7s
+Novel-44557: 109 units, 220 entities, 1932 relationships, levels 0-2, 50 communities, 2.4s
+{
+  "graphrag": "3.1.1",
+  "tiktoken": "0.13.0",
+  "pandas": "3.0.5",
+  "python": "3.11.5",
+  "encoding": "o200k_base",
+  "chunk_size": 600,
+  "chunk_overlap": 100,
+  "prune": {
+    "min_node_freq": 2,
+    "max_node_freq_std": null,
+    "min_node_degree": 1,
+    "max_node_degree_std": null,
+    "min_edge_weight_pct": 40.0,
+    "remove_ego_nodes": true,
+    "lcc_only": false
+  },
+  "cluster": {
+    "max_cluster_size": 10,
+    "use_lcc": true,
+    "seed": 3735928559
+  },
+  "budget": 8000,
+  "rgi_main": {
+    "full_cut": 0.8,
+    "bridge_share": 0.12,
+    "bridge_min_units": 2
+  },
+  "ablations": [
+    {
+      "full_cut": 0.8,
+      "bridge_share": 0.0,
+      "bridge_min_units": 2
+    },
+    {
+      "full_cut": 0.8,
+      "bridge_share": 0.06,
+      "bridge_min_units": 2
+    },
+    {
+      "full_cut": 0.8,
+      "bridge_share": 0.24,
+      "bridge_min_units": 2
+    },
+    {
+      "full_cut": 0.6,
+      "bridge_share": 0.12,
+      "bridge_min_units": 2
+    },
+    {
+      "full_cut": 1.0,
+      "bridge_share": 0.12,
+      "bridge_min_units": 2
+    },
+    {
+      "full_cut": 0.8,
+      "bridge_share": 0.12,
+      "bridge_min_units": 1
+    },
+    {
+      "full_cut": 0.8,
+      "bridge_share": 0.12,
+      "bridge_min_units": 3
+    }
+  ],
+  "levels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "budgets": [
+    4000,
+    8000,
+    16000,
+    32000
+  ],
+  "link": {
+    "strategy": "triple",
+    "threshold": 85.0,
+    "scorer": "token_set_ratio",
+    "normalize": true,
+    "restrict_to_source_document": true
+  },
+  "sort_context_equivalence_checks": 110,
+  "novels": 20,
+  "runtime_s": 78.6,
+  "llm_calls": 0
+}

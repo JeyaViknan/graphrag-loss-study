@@ -1,0 +1,18 @@
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{Level 2 (default)} & \multicolumn{2}{c}{Level 0 (root)} \\
+\cmidrule(lr){2-3}\cmidrule(l){4-5}
+Configuration & In input & Bridged & In input & Bridged \\
+\midrule
+GraphRAG & 12.4 & n/a & 1.9 & n/a \\
+\midrule
+No bridges ($b{=}0$) & 14.7 & 0.0 & 13.4 & 0.0 \\
+$b{=}0.06$ & 29.4 & 15.0 & 13.2 & 2.6 \\
+$b{=}0.12$ (default) & 34.6 & 20.6 & 12.4 & 4.5 \\
+$b{=}0.24$ & 37.2 & 24.5 & 11.1 & 6.4 \\
+$f{=}0.6$ & 35.5 & 20.6 & 21.5 & 4.5 \\
+$f{=}1.0$ (no compact tier) & 31.2 & 18.8 & 2.3 & 0.4 \\
+$m{=}1$ & 49.8 & 35.8 & 13.0 & 5.6 \\
+$m{=}3$ & 21.9 & 7.7 & 12.2 & 2.8 \\
+\bottomrule
+\end{tabular}

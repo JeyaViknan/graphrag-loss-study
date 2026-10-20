@@ -1,0 +1,2456 @@
+{
+ "corpus": {
+  "entities": 360,
+  "relationships": 905,
+  "core_entities": 102,
+  "core_relationships": 162,
+  "questions": 48,
+  "featured": 5
+ },
+ "config": {
+  "budget": 8000,
+  "K": 3,
+  "fullCut": 0.8,
+  "bridgeShare": 0.12,
+  "bridgeMinWeight": 4,
+  "bridgeTok": 14,
+  "compactTok": 14
+ },
+ "default": [
+  {
+   "level": 0,
+   "communities": 22,
+   "over_budget": 0,
+   "mean_need": 1448.590909090909,
+   "orig": {
+    "retention": 0.7259668508287292,
+    "coverage": 0.4920138888888888,
+    "retrieval": 0.4920138888888888,
+    "context": 0.3125,
+    "correct": 0.4166666666666667,
+    "boundary": 248,
+    "budget": 0
+   },
+   "prop": {
+    "retention": 0.7878453038674034,
+    "coverage": 0.7621527777777777,
+    "retrieval": 0.7569444444444443,
+    "context": 0.5208333333333334,
+    "correct": 0.5625,
+    "boundary": 192,
+    "budget": 0,
+    "recovered": 56
+   },
+   "retrieval_diff": 0.2649305555555556,
+   "retrieval_diff_ci": [
+    0.1798611111111111,
+    0.35868055555555567
+   ],
+   "query_regressions": 0,
+   "edge_regressions": 0
+  },
+  {
+   "level": 1,
+   "communities": 8,
+   "over_budget": 0,
+   "mean_need": 4352,
+   "orig": {
+    "retention": 0.8419889502762431,
+    "coverage": 0.6906249999999999,
+    "retrieval": 0.6906249999999999,
+    "context": 0.5,
+    "correct": 0.5208333333333334,
+    "boundary": 143,
+    "budget": 0
+   },
+   "prop": {
+    "retention": 0.8839779005524862,
+    "coverage": 0.8472222222222223,
+    "retrieval": 0.8472222222222223,
+    "context": 0.6458333333333334,
+    "correct": 0.625,
+    "boundary": 105,
+    "budget": 0,
+    "recovered": 38
+   },
+   "retrieval_diff": 0.15659722222222225,
+   "retrieval_diff_ci": [
+    0.09062500000000001,
+    0.22951388888888888
+   ],
+   "query_regressions": 0,
+   "edge_regressions": 0
+  },
+  {
+   "level": 2,
+   "communities": 3,
+   "over_budget": 2,
+   "mean_need": 12069,
+   "orig": {
+    "retention": 0.46298342541436466,
+    "coverage": 0.8017361111111113,
+    "retrieval": 0.8017361111111113,
+    "context": 0.5833333333333334,
+    "correct": 0.6041666666666666,
+    "boundary": 93,
+    "budget": 393
+   },
+   "prop": {
+    "retention": 0.6519337016574586,
+    "coverage": 0.8697916666666665,
+    "retrieval": 0.8697916666666665,
+    "context": 0.6666666666666666,
+    "correct": 0.6666666666666666,
+    "boundary": 78,
+    "budget": 237,
+    "recovered": 171
+   },
+   "retrieval_diff": 0.06805555555555556,
+   "retrieval_diff_ci": [
+    0.029861111111111113,
+    0.11284722222222222
+   ],
+   "query_regressions": 0,
+   "edge_regressions": 0
+  },
+  {
+   "level": 3,
+   "communities": 1,
+   "over_budget": 1,
+   "mean_need": 38795,
+   "orig": {
+    "retention": 0.143646408839779,
+    "coverage": 0.5434027777777779,
+    "retrieval": 0.5434027777777779,
+    "context": 0.2916666666666667,
+    "correct": 0.4375,
+    "boundary": 0,
+    "budget": 775
+   },
+   "prop": {
+    "retention": 0.23425414364640884,
+    "coverage": 0.7118055555555557,
+    "retrieval": 0.7118055555555557,
+    "context": 0.4375,
+    "correct": 0.5,
+    "boundary": 0,
+    "budget": 693,
+    "recovered": 82
+   },
+   "retrieval_diff": 0.1684027777777778,
+   "retrieval_diff_ci": [
+    0.09375,
+    0.25347222222222227
+   ],
+   "query_regressions": 0,
+   "edge_regressions": 0
+  }
+ ],
+ "sweeps": {
+  "bridgeShare": [
+   {
+    "cfg": {
+     "bridgeShare": 0
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0,
+       "recovered": 0
+      },
+      "retrieval_diff": 0,
+      "retrieval_diff_ci": [
+       0,
+       0
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0,
+       "recovered": 0
+      },
+      "retrieval_diff": 0,
+      "retrieval_diff_ci": [
+       0,
+       0
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6530386740331492,
+       "coverage": 0.8156249999999999,
+       "retrieval": 0.8156249999999999,
+       "context": 0.6041666666666666,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 221,
+       "recovered": 172
+      },
+      "retrieval_diff": 0.01388888888888889,
+      "retrieval_diff_ci": [
+       0,
+       0.034722222222222224
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "bridgeShare": 0.06
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7834254143646409,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 196,
+       "budget": 0,
+       "recovered": 52
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "bridgeShare": 0.12
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "bridgeShare": 0.24
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   }
+  ],
+  "bridgeMinWeight": [
+   {
+    "cfg": {
+     "bridgeMinWeight": 3
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8497237569060774,
+       "coverage": 0.9010416666666666,
+       "retrieval": 0.8958333333333334,
+       "context": 0.7083333333333334,
+       "correct": 0.6666666666666666,
+       "boundary": 136,
+       "budget": 0,
+       "recovered": 112
+      },
+      "retrieval_diff": 0.40381944444444445,
+      "retrieval_diff_ci": [
+       0.30069444444444443,
+       0.5142361111111112
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.918232044198895,
+       "coverage": 0.9496527777777778,
+       "retrieval": 0.9496527777777778,
+       "context": 0.8541666666666666,
+       "correct": 0.7291666666666666,
+       "boundary": 74,
+       "budget": 0,
+       "recovered": 69
+      },
+      "retrieval_diff": 0.2590277777777778,
+      "retrieval_diff_ci": [
+       0.1684027777777778,
+       0.35624999999999996
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6419889502762431,
+       "coverage": 0.9375,
+       "retrieval": 0.9375,
+       "context": 0.8125,
+       "correct": 0.7291666666666666,
+       "boundary": 55,
+       "budget": 269,
+       "recovered": 162
+      },
+      "retrieval_diff": 0.1357638888888889,
+      "retrieval_diff_ci": [
+       0.07465277777777778,
+       0.20590277777777774
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "bridgeMinWeight": 4
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "bridgeMinWeight": 5
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7580110497237569,
+       "coverage": 0.6194444444444445,
+       "retrieval": 0.6142361111111111,
+       "context": 0.3333333333333333,
+       "correct": 0.4375,
+       "boundary": 219,
+       "budget": 0,
+       "recovered": 29
+      },
+      "retrieval_diff": 0.12222222222222222,
+      "retrieval_diff_ci": [
+       0.06666666666666667,
+       0.18541666666666667
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8640883977900552,
+       "coverage": 0.7791666666666667,
+       "retrieval": 0.7791666666666667,
+       "context": 0.5625,
+       "correct": 0.5416666666666666,
+       "boundary": 123,
+       "budget": 0,
+       "recovered": 20
+      },
+      "retrieval_diff": 0.08854166666666667,
+      "retrieval_diff_ci": [
+       0.03819444444444444,
+       0.14930555555555555
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6530386740331492,
+       "coverage": 0.843402777777778,
+       "retrieval": 0.843402777777778,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 87,
+       "budget": 227,
+       "recovered": 172
+      },
+      "retrieval_diff": 0.041666666666666664,
+      "retrieval_diff_ci": [
+       0.012152777777777776,
+       0.078125
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "bridgeMinWeight": 999
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0,
+       "recovered": 0
+      },
+      "retrieval_diff": 0,
+      "retrieval_diff_ci": [
+       0,
+       0
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0,
+       "recovered": 0
+      },
+      "retrieval_diff": 0,
+      "retrieval_diff_ci": [
+       0,
+       0
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6530386740331492,
+       "coverage": 0.8156249999999999,
+       "retrieval": 0.8156249999999999,
+       "context": 0.6041666666666666,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 221,
+       "recovered": 172
+      },
+      "retrieval_diff": 0.01388888888888889,
+      "retrieval_diff_ci": [
+       0,
+       0.034722222222222224
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   }
+  ],
+  "fullCut": [
+   {
+    "cfg": {
+     "fullCut": 0.6
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.8165745856353591,
+       "coverage": 0.8923611111111112,
+       "retrieval": 0.8923611111111112,
+       "context": 0.7291666666666666,
+       "correct": 0.6875,
+       "boundary": 78,
+       "budget": 88,
+       "recovered": 320
+      },
+      "retrieval_diff": 0.09062500000000001,
+      "retrieval_diff_ci": [
+       0.04513888888888889,
+       0.14201388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.3370165745856354,
+       "coverage": 0.8906250000000001,
+       "retrieval": 0.8906250000000001,
+       "context": 0.7708333333333334,
+       "correct": 0.6875,
+       "boundary": 0,
+       "budget": 600,
+       "recovered": 175
+      },
+      "retrieval_diff": 0.34722222222222227,
+      "retrieval_diff_ci": [
+       0.24652777777777782,
+       0.44791666666666674
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "fullCut": 0.8
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "fullCut": 1
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.47955801104972373,
+       "coverage": 0.8559027777777778,
+       "retrieval": 0.8559027777777778,
+       "context": 0.6458333333333334,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 393,
+       "recovered": 15
+      },
+      "retrieval_diff": 0.05416666666666667,
+      "retrieval_diff_ci": [
+       0.01909722222222222,
+       0.096875
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.14475138121546963,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 774,
+       "recovered": 1
+      },
+      "retrieval_diff": 0,
+      "retrieval_diff_ci": [
+       0,
+       0
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   }
+  ],
+  "K": [
+   {
+    "cfg": {
+     "K": 2
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4850694444444444,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7447916666666666,
+       "context": 0.5,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.25972222222222224,
+      "retrieval_diff_ci": [
+       0.1763888888888889,
+       0.35208333333333336
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "K": 3
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "K": 6
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7621527777777777,
+       "context": 0.5416666666666666,
+       "correct": 0.5833333333333334,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.27013888888888893,
+      "retrieval_diff_ci": [
+       0.18333333333333335,
+       0.36666666666666664
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   }
+  ],
+  "budget": [
+   {
+    "cfg": {
+     "budget": 4000
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 4,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.585635359116022,
+       "coverage": 0.6628472222222223,
+       "retrieval": 0.6628472222222223,
+       "context": 0.4583333333333333,
+       "correct": 0.5,
+       "boundary": 143,
+       "budget": 232
+      },
+      "prop": {
+       "retention": 0.7281767955801105,
+       "coverage": 0.8194444444444445,
+       "retrieval": 0.8194444444444445,
+       "context": 0.6041666666666666,
+       "correct": 0.6041666666666666,
+       "boundary": 105,
+       "budget": 141,
+       "recovered": 129
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 3,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.2121546961325967,
+       "coverage": 0.6020833333333334,
+       "retrieval": 0.6020833333333334,
+       "context": 0.375,
+       "correct": 0.4791666666666667,
+       "boundary": 93,
+       "budget": 620
+      },
+      "prop": {
+       "retention": 0.3414364640883978,
+       "coverage": 0.736111111111111,
+       "retrieval": 0.736111111111111,
+       "context": 0.4583333333333333,
+       "correct": 0.5625,
+       "boundary": 78,
+       "budget": 518,
+       "recovered": 117
+      },
+      "retrieval_diff": 0.13402777777777777,
+      "retrieval_diff_ci": [
+       0.07118055555555557,
+       0.20555555555555557
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.06298342541436464,
+       "coverage": 0.35937500000000006,
+       "retrieval": 0.35937500000000006,
+       "context": 0.16666666666666666,
+       "correct": 0.3333333333333333,
+       "boundary": 0,
+       "budget": 848
+      },
+      "prop": {
+       "retention": 0.11602209944751381,
+       "coverage": 0.48611111111111116,
+       "retrieval": 0.48611111111111116,
+       "context": 0.25,
+       "correct": 0.4166666666666667,
+       "boundary": 0,
+       "budget": 800,
+       "recovered": 48
+      },
+      "retrieval_diff": 0.1267361111111111,
+      "retrieval_diff_ci": [
+       0.07291666666666667,
+       0.18576388888888887
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "budget": 8000
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 2,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.46298342541436466,
+       "coverage": 0.8017361111111113,
+       "retrieval": 0.8017361111111113,
+       "context": 0.5833333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 393
+      },
+      "prop": {
+       "retention": 0.6519337016574586,
+       "coverage": 0.8697916666666665,
+       "retrieval": 0.8697916666666665,
+       "context": 0.6666666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 78,
+       "budget": 237,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.06805555555555556,
+      "retrieval_diff_ci": [
+       0.029861111111111113,
+       0.11284722222222222
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.143646408839779,
+       "coverage": 0.5434027777777779,
+       "retrieval": 0.5434027777777779,
+       "context": 0.2916666666666667,
+       "correct": 0.4375,
+       "boundary": 0,
+       "budget": 775
+      },
+      "prop": {
+       "retention": 0.23425414364640884,
+       "coverage": 0.7118055555555557,
+       "retrieval": 0.7118055555555557,
+       "context": 0.4375,
+       "correct": 0.5,
+       "boundary": 0,
+       "budget": 693,
+       "recovered": 82
+      },
+      "retrieval_diff": 0.1684027777777778,
+      "retrieval_diff_ci": [
+       0.09375,
+       0.25347222222222227
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   },
+   {
+    "cfg": {
+     "budget": 16000
+    },
+    "levels": [
+     {
+      "level": 0,
+      "communities": 22,
+      "over_budget": 0,
+      "mean_need": 1448.590909090909,
+      "orig": {
+       "retention": 0.7259668508287292,
+       "coverage": 0.4920138888888888,
+       "retrieval": 0.4920138888888888,
+       "context": 0.3125,
+       "correct": 0.4166666666666667,
+       "boundary": 248,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.7878453038674034,
+       "coverage": 0.7621527777777777,
+       "retrieval": 0.7569444444444443,
+       "context": 0.5208333333333334,
+       "correct": 0.5625,
+       "boundary": 192,
+       "budget": 0,
+       "recovered": 56
+      },
+      "retrieval_diff": 0.2649305555555556,
+      "retrieval_diff_ci": [
+       0.1798611111111111,
+       0.35868055555555567
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 1,
+      "communities": 8,
+      "over_budget": 0,
+      "mean_need": 4352,
+      "orig": {
+       "retention": 0.8419889502762431,
+       "coverage": 0.6906249999999999,
+       "retrieval": 0.6906249999999999,
+       "context": 0.5,
+       "correct": 0.5208333333333334,
+       "boundary": 143,
+       "budget": 0
+      },
+      "prop": {
+       "retention": 0.8839779005524862,
+       "coverage": 0.8472222222222223,
+       "retrieval": 0.8472222222222223,
+       "context": 0.6458333333333334,
+       "correct": 0.625,
+       "boundary": 105,
+       "budget": 0,
+       "recovered": 38
+      },
+      "retrieval_diff": 0.15659722222222225,
+      "retrieval_diff_ci": [
+       0.09062500000000001,
+       0.22951388888888888
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 2,
+      "communities": 3,
+      "over_budget": 1,
+      "mean_need": 12069,
+      "orig": {
+       "retention": 0.8685082872928177,
+       "coverage": 0.8381944444444446,
+       "retrieval": 0.8381944444444446,
+       "context": 0.6458333333333334,
+       "correct": 0.6041666666666666,
+       "boundary": 93,
+       "budget": 26
+      },
+      "prop": {
+       "retention": 0.9138121546961326,
+       "coverage": 0.8923611111111112,
+       "retrieval": 0.8923611111111112,
+       "context": 0.7291666666666666,
+       "correct": 0.6875,
+       "boundary": 78,
+       "budget": 0,
+       "recovered": 41
+      },
+      "retrieval_diff": 0.05416666666666667,
+      "retrieval_diff_ci": [
+       0.01909722222222222,
+       0.096875
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     },
+     {
+      "level": 3,
+      "communities": 1,
+      "over_budget": 1,
+      "mean_need": 38795,
+      "orig": {
+       "retention": 0.2994475138121547,
+       "coverage": 0.859375,
+       "retrieval": 0.859375,
+       "context": 0.7291666666666666,
+       "correct": 0.6666666666666666,
+       "boundary": 0,
+       "budget": 634
+      },
+      "prop": {
+       "retention": 0.48839779005524864,
+       "coverage": 0.923611111111111,
+       "retrieval": 0.923611111111111,
+       "context": 0.8125,
+       "correct": 0.7083333333333334,
+       "boundary": 0,
+       "budget": 463,
+       "recovered": 171
+      },
+      "retrieval_diff": 0.0642361111111111,
+      "retrieval_diff_ci": [
+       0.019097222222222224,
+       0.11805555555555557
+      ],
+      "query_regressions": 0,
+      "edge_regressions": 0
+     }
+    ]
+   }
+  ]
+ }
+}

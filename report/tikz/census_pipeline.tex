@@ -1,0 +1,25 @@
+\documentclass[border=4pt]{standalone}
+\input{_preamble}
+\begin{document}
+\begin{tikzpicture}[node distance=0.38cm]
+\tikzset{st/.style={box, minimum width=5.2cm, minimum height=0.78cm, text width=5.0cm}, note/.style={font=\scriptsize, text=muted, align=left, text width=6.2cm, anchor=west}}
+\node[st] (n1) {Novel text (one of 20)};
+\node[st, below=of n1] (n2) {Token chunker: 1,200 tokens, 100 overlap};
+\node[st, below=of n2, fill=evid!6] (n3) {Proper-noun phrase extraction};
+\node[st, below=of n3] (n4) {Co-occurrence edges with PMI weights};
+\node[st, below=of n4] (n5) {\texttt{prune\_graph} with shipped defaults};
+\node[st, below=of n5] (n6) {Hierarchical Leiden (max size 10, seed)};
+\node[st, below=of n6] (n7) {Text-unit summary inputs, cut at 8,000 tokens};
+\node[st, below=of n7] (n8) {Global-search roll-up at levels 0 to 3};
+\node[st, below=of n8, fill=kept!7, draw=kept!80] (n9) {Status and evidence tier for every relationship; RGI inputs; gold links};
+\foreach \a/\b in {n1/n2,n2/n3,n3/n4,n4/n5,n5/n6,n6/n7,n7/n8,n8/n9} \draw[arr] (\a) -- (\b);
+\node[note] at ($(n2.east)+(0.3,0)$) {GraphRAG \texttt{graphrag\_chunking}, \texttt{o200k\_base}};
+\node[note] at ($(n3.east)+(0.3,0)$) {Our substitute for the NLTK-based default extractor};
+\node[note] at ($(n4.east)+(0.3,0)$) {GraphRAG \texttt{\_extract\_edges}};
+\node[note] at ($(n5.east)+(0.3,0)$) {GraphRAG \texttt{prune\_graph}, \texttt{PruneGraphDefaults}};
+\node[note] at ($(n6.east)+(0.3,0)$) {GraphRAG \texttt{cluster\_graph} (graspologic)};
+\node[note] at ($(n7.east)+(0.3,0)$) {GraphRAG \texttt{get\_context\_string}; checked against \texttt{sort\_context}};
+\node[note] at ($(n8.east)+(0.3,0)$) {Deepest community at or above level $\ell$};
+\node[note] at ($(n9.east)+(0.3,0)$) {No LLM calls; about 150 seconds for all novels};
+\end{tikzpicture}
+\end{document}

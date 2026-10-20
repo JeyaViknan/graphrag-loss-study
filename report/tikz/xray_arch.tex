@@ -1,0 +1,19 @@
+\documentclass[border=4pt]{standalone}
+\input{_preamble}
+\begin{document}
+\begin{tikzpicture}[node distance=0.5cm]
+\tikzset{m/.style={box, minimum width=3.6cm, minimum height=1.0cm, text width=3.4cm}}
+\node[m] (data) {\texttt{data.js}\\core entities, relations, communities, questions};
+\node[m, right=1.0cm of data] (sim) {\texttt{sim.js}\\long tail, layout, loss per level, \texttt{evaluate}, \texttt{ask}};
+\node[m, right=1.4cm of sim] (app) {\texttt{app.js}\\canvas renderer and interaction state};
+\draw[arr] (data) -- (sim); \draw[arr] (sim) -- node[above=1pt, font=\scriptsize] {\texttt{XR.model}} (app);
+\node[m, below=1.0cm of app, minimum height=0.8cm] (cv) {Graph canvas (both methods, four levels)};
+\node[m, below=0.35cm of cv, minimum height=0.8cm] (rail) {Evidence rail and inspectors};
+\node[m, below=0.35cm of rail, minimum height=0.8cm] (met) {Metrics table and level stepper};
+\node[m, left=1.0cm of rail, minimum height=0.8cm] (q) {Question menu: five featured or typed question};
+\node[m, left=1.0cm of q, minimum height=0.8cm] (th) {Light and dark themes};
+\draw[arr] (app) -- (cv); \draw[arr] (cv) -- (rail); \draw[arr] (rail) -- (met);
+\draw[arr] (q) -- (rail); \draw[arr, dashed] (q.north) |- node[left, font=\scriptsize, pos=0.25] {\texttt{ask(text)}} (sim.south);
+\draw[arr, dashed] (th) -- (q);
+\end{tikzpicture}
+\end{document}

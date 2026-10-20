@@ -1,0 +1,9 @@
+I am deeply grateful to Dr. Karthika Veeramani, Assistant Professor, School of Computer Science and Engineering, Vellore Institute of Technology, Chennai, for her constant guidance, encouragement and understanding throughout this project. Above all, she taught me patience in my work. My association with her has gone beyond academics, and it has been a real opportunity to work with someone whose expertise lies in big data analytics and machine learning.
+
+I would like to thank the leadership of the institute for providing an excellent working environment and for inspiring all of us during the course: Dr. G. Viswanathan, our Honorable Chancellor; Mr. Sankar Viswanathan, Dr. Sekar Viswanathan and Dr. G V Selvam, Vice Presidents; Dr. Sandhya Pentareddy, Executive Director; Ms. Kadhambari S. Viswanathan, Assistant Vice-President; Dr. V. S. Kanchana Bhaaskaran, Vice-Chancellor; Dr. T. Thyagarajan, Pro-Vice Chancellor, VIT Chennai; and Dr. P. K. Manoharan, Additional Registrar.
+
+I also thank Dr. Viswanathan V, Dean, and Dr. Nithyanandam P, Dr. Suganya G and Dr. Sweetlin Hemalatha C, Associate Deans, School of Computer Science and Engineering, Vellore Institute of Technology, Chennai, for the time and effort they spent sharing their knowledge and for helping us in every way they could.
+
+I sincerely thank Dr. Prassanna J, Professor and Head of the Department, B.Tech. Computer Science and Engineering, and the Project Coordinators for their support and encouragement in taking up and completing this work.
+
+My thanks go to my teammates, Adithya D.S and Aatreyee Dev, with whom this project was planned and built, and to all the faculty and staff of Vellore Institute of Technology, Chennai who helped me acquire the knowledge it needed. I thank my parents for their support, and my friends for encouraging me to take up and finish this task.

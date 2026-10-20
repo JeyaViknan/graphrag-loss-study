@@ -1,0 +1,194 @@
+{
+ "acronyms": [
+  [
+   "API",
+   "Application Programming Interface"
+  ],
+  [
+   "AVC",
+   "Advanced Video Coding (H.264/AVC)"
+  ],
+  [
+   "CI",
+   "Confidence Interval"
+  ],
+  [
+   "CSS",
+   "Cascading Style Sheets"
+  ],
+  [
+   "CSV",
+   "Comma-Separated Values"
+  ],
+  [
+   "E0 to E9",
+   "Experiment scripts of the measurement toolkit"
+  ],
+  [
+   "F1 to F10",
+   "Functional requirement identifiers"
+  ],
+  [
+   "G1 to G4",
+   "Pre-registered kill criteria (gates)"
+  ],
+  [
+   "GraphRAG",
+   "Graph-based Retrieval-Augmented Generation (Microsoft)"
+  ],
+  [
+   "HTML",
+   "HyperText Markup Language"
+  ],
+  [
+   "ID",
+   "Identifier"
+  ],
+  [
+   "JSON",
+   "JavaScript Object Notation"
+  ],
+  [
+   "LCC",
+   "Largest Connected Component"
+  ],
+  [
+   "LLM",
+   "Large Language Model"
+  ],
+  [
+   "MIT",
+   "Massachusetts Institute of Technology (licence name)"
+  ],
+  [
+   "NLI",
+   "Natural Language Inference"
+  ],
+  [
+   "NLTK",
+   "Natural Language Toolkit"
+  ],
+  [
+   "OMD-GraphRAG",
+   "Ontology-guided, Multi-dimensional, Dual-channel GraphRAG"
+  ],
+  [
+   "PMI",
+   "Pointwise Mutual Information"
+  ],
+  [
+   "RAG",
+   "Retrieval-Augmented Generation"
+  ],
+  [
+   "RAPTOR",
+   "Recursive Abstractive Processing for Tree-Organized Retrieval"
+  ],
+  [
+   "RECOMP",
+   "Retrieve, Compress, Prepend"
+  ],
+  [
+   "RGI",
+   "Residual Graph Indexing"
+  ]
+ ],
+ "symbols": [
+  [
+   "G = (V, E)",
+   "Extracted knowledge graph with entities V and relationships E"
+  ],
+  [
+   "r = (a, b)",
+   "Relationship between entities a and b"
+  ],
+  [
+   "U, U(r)",
+   "Set of text units; the text units that support relationship r"
+  ],
+  [
+   "C, c",
+   "Set of communities; one community"
+  ],
+  [
+   "λ(c)",
+   "Level of community c in the hierarchy (0 is the coarsest)"
+  ],
+  [
+   "ℓ",
+   "Query level of global search"
+  ],
+  [
+   "σℓ(v)",
+   "Deepest community at or above level ℓ that contains entity v"
+  ],
+  [
+   "Sℓ",
+   "Communities whose summaries global search reads at level ℓ"
+  ],
+  [
+   "I(c)",
+   "Summary input of community c"
+  ],
+  [
+   "B",
+   "Token budget of a summary input (8,000 by default)"
+  ],
+  [
+   "T(x)",
+   "Number of tokens in text x under the o200k_base encoding"
+  ],
+  [
+   "Lℓ",
+   "Relationships out of scope at level ℓ"
+  ],
+  [
+   "R(G, ℓ), R(RGI, ℓ)",
+   "Relationships in scope and represented under GraphRAG and under RGI"
+  ],
+  [
+   "|c|",
+   "Number of entities in community c"
+  ],
+  [
+   "d̄",
+   "Mean number of internal relationships per entity of a community"
+  ],
+  [
+   "f",
+   "RGI full-item cutoff, as a share of B (0.8 by default)"
+  ],
+  [
+   "b",
+   "RGI bridge share of B (0.12 by default)"
+  ],
+  [
+   "m",
+   "Minimum number of supporting text units for a bridge record (2 by default)"
+  ],
+  [
+   "E_in, E_bd",
+   "In-scope and boundary relationships of a community"
+  ],
+  [
+   "P, k_G",
+   "GraphRAG's items for a community; number of items GraphRAG admits"
+  ],
+  [
+   "X, rep(X)",
+   "Input under construction; relationships represented in X"
+  ],
+  [
+   "Y(q)",
+   "Gold relationships of question q"
+  ],
+  [
+   "K",
+   "Number of summaries read per question in the simulation"
+  ],
+  [
+   "κ",
+   "Cohen's kappa, a measure of agreement between two annotators"
+  ]
+ ]
+}

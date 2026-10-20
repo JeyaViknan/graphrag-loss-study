@@ -1,0 +1,19 @@
+\documentclass[border=4pt]{standalone}
+\input{_preamble}
+\begin{document}
+\begin{tikzpicture}[node distance=0.42cm]
+\tikzset{st/.style={box, minimum width=3.2cm, minimum height=1.05cm}}
+\node[st] (s1) {1. Read GraphRAG\\source and docs};
+\node[st, right=of s1] (s2) {2. Freeze kill\\thresholds in git};
+\node[st, right=of s2] (s3) {3. Build and test\\measurement toolkit};
+\node[st, below=0.7cm of s3] (s4) {4. Simulate the\\mechanism (X-Ray)};
+\node[st, left=of s4] (s5) {5. Exact census on\\GraphRAG-Bench};
+\node[st, left=of s5] (s6) {6. Design and\\check RGI};
+\node[st, below=0.7cm of s6] (s7) {7. Ablations and\\sensitivity runs};
+\node[st, right=of s7] (s8) {8. Paper and\\report};
+\node[st, right=of s8, draw=muted, text=muted, dashed] (s9) {9. LLM index and\\gates G1 to G4};
+\foreach \a/\b in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6,s6/s7,s7/s8} \draw[arr] (\a) -- (\b);
+\draw[arr, dashed, draw=muted] (s8) -- (s9);
+\node[font=\scriptsize, text=muted, below=0.08cm of s9] {future work};
+\end{tikzpicture}
+\end{document}

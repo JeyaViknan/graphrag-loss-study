@@ -1,0 +1,34 @@
+\documentclass[border=4pt]{standalone}
+\input{_preamble}
+\begin{document}
+\begin{tikzpicture}[node distance=0.45cm]
+\node[box, minimum width=3.0cm, minimum height=1.0cm] (data) {GraphRAG-Bench Novel\\20 novels, 2,010 questions};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, below=0.9cm of data] (gr) {GraphRAG 3.1.1\\(fast pipeline code)};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, right=1.0cm of data] (census) {Loss census\\(\texttt{census\_rgi.py})};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, below=0.45cm of census] (sel) {Selection analysis\\(\texttt{selection\_loss.py})};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, below=0.45cm of sel] (rgi) {RGI builder\\(two-tier input, bridges)};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, right=1.0cm of census] (res) {Result tables\\(CSV, JSON)};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, below=0.45cm of res] (an) {Analysis\\(\texttt{analyze.py})};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, below=0.45cm of an] (out) {Figures, tables,\\number macros};
+\draw[arr] (data) -- (census); \draw[arr] (gr) -- (census.south west); \draw[arr] (gr) -- (sel); \draw[arr] (gr) -- (rgi);
+\draw[arr] (census) -- (res); \draw[arr] (sel.east) -- (res.south west); \draw[arr] (rgi.east) -- ++(0.45,0) |- (res.west);
+\draw[arr] (res) -- (an); \draw[arr] (an) -- (out);
+\begin{scope}[on background layer]
+\node[grp, fit=(data)(gr)(census)(sel)(rgi)(res)(an)(out), label={[lbl, anchor=south west]north west:Measurement and repair on real data (no LLM)}] (g1) {};
+\end{scope}
+\node[box, minimum width=3.0cm, minimum height=1.0cm] (kit) at ($(gr |- rgi.south)+(0,-1.55)$) {Measurement toolkit\\9 modules, 166 tests};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, right=1.0cm of kit] (gates) {Experiments E0 to E9\\gates G1 to G4};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, right=1.0cm of gates] (pre) {Frozen thresholds\\(\texttt{GATES.md})};
+\draw[arr] (kit) -- (gates); \draw[arr] (pre) -- (gates);
+\begin{scope}[on background layer]
+\node[grp, fit=(kit)(gates)(pre), label={[lbl, anchor=south west]north west:Answer-level test (pre-registered; needs an LLM-built index)}] (g2) {};
+\end{scope}
+\node[box, minimum width=3.0cm, minimum height=1.0cm, below=1.5cm of kit] (simd) {Synthetic index\\(\texttt{data.js}, \texttt{sim.js})};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, right=1.0cm of simd] (ui) {GraphRAG X-Ray\\dashboard (\texttt{app.js})};
+\node[box, minimum width=3.0cm, minimum height=1.0cm, right=1.0cm of ui] (sw) {Configuration\\sweeps};
+\draw[arr] (simd) -- (ui); \draw[arr] (simd.south) -- ++(0,-0.35) -| (sw.south);
+\begin{scope}[on background layer]
+\node[grp, fit=(simd)(ui)(sw), label={[lbl, anchor=south west]north west:Controlled simulation and demonstration}] (g3) {};
+\end{scope}
+\end{tikzpicture}
+\end{document}

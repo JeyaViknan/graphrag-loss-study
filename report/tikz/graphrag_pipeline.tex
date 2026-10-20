@@ -1,0 +1,27 @@
+\documentclass[border=4pt]{standalone}
+\input{_preamble}
+\begin{document}
+\begin{tikzpicture}[node distance=0.55cm]
+\node[box, minimum width=2.6cm, minimum height=1.1cm] (a) {Source documents};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, right=of a] (b) {Text units\\(1,200 tokens)};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, right=of b] (c) {Entity and\\relationship extraction};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, right=of c] (d) {Knowledge graph\\$G=(V,E)$};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, below=1.0cm of d] (e) {Hierarchical Leiden\\communities};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, left=of e] (f) {Summary inputs\\($\le 8{,}000$ tokens)};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, left=of f] (g) {Community reports\\(LLM summaries)};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, left=of g] (h) {Report store\\(levels 0, 1, 2, \dots)};
+\foreach \x/\y in {a/b,b/c,c/d,d/e,e/f,f/g,g/h} \draw[arr] (\x) -- (\y);
+\begin{scope}[on background layer]
+\node[grp, fit=(a)(b)(c)(d)(e)(f)(g)(h), label={[lbl, anchor=south west]north west:Indexing (offline, before any question)}] (idx) {};
+\end{scope}
+\node[box, minimum width=2.6cm, minimum height=1.1cm, below=1.6cm of h] (q) {User question $q$};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, right=of q] (s) {Select reports\\at level $\ell$};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, right=of s] (m) {Map: partial answer\\per report batch};
+\node[box, minimum width=2.6cm, minimum height=1.1cm, right=of m] (r) {Reduce: final\\answer};
+\foreach \x/\y in {q/s,s/m,m/r} \draw[arr] (\x) -- (\y);
+\draw[arr, dashed] (h.south) |- ($(s.north)+(0,0.5)$) -- (s.north);
+\begin{scope}[on background layer]
+\node[grp, fit=(q)(s)(m)(r), label={[lbl, anchor=south east]north east:Global search (online, per question)}] {};
+\end{scope}
+\end{tikzpicture}
+\end{document}

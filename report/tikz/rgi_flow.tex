@@ -1,0 +1,27 @@
+\documentclass[border=4pt]{standalone}
+\input{_preamble}
+\begin{document}
+\begin{tikzpicture}[node distance=0.55cm]
+\tikzset{st/.style={box, minimum width=4.2cm, minimum height=0.8cm}}
+\node[st] (s0) {Community $c$ at level $\ell$: GraphRAG items $P$,\\in-scope set $E_{\mathrm{in}}$, boundary set $E_{\mathrm{bd}}$};
+\node[dec, below=of s0] (d1) {Does $P$ fit\\in $B$?};
+\node[st, right=1.2cm of d1] (fit) {Keep all of $P$;\\no pending facts};
+\node[st, below=0.6cm of d1] (cut) {Keep the longest prefix\\of $P$ within $fB$};
+\node[st, below=of cut] (res) {Reserve compact facts for what\\GraphRAG's own prefix represented};
+\node[dec, below=of res] (d2) {Reserved facts\\fit in $B$?};
+\node[st, right=1.2cm of d2] (fb) {Fallback: use GraphRAG's\\own prefix, no reserved facts};
+\node[st, below=0.6cm of d2] (br) {Add bridge records for $E_{\mathrm{bd}}$\\(support $\ge m$), up to $bB$};
+\node[st, below=of br] (cf) {Add compact facts for pending\\in-scope relationships, up to $B$};
+\node[st, below=of cf] (ck) {Render; drop trailing facts until\\the exact token count is $\le B$};
+\node[st, below=of ck, fill=kept!7, draw=kept!80] (out) {Input $X$; residual $=$ the rest};
+\draw[arr] (s0) -- (d1);
+\draw[arr] (d1) -- node[above, font=\scriptsize] {yes} (fit);
+\draw[arr] (d1) -- node[right, font=\scriptsize] {no} (cut);
+\draw[arr] (cut) -- (res); \draw[arr] (res) -- (d2);
+\draw[arr] (d2) -- node[above, font=\scriptsize] {no} (fb);
+\draw[arr] (d2) -- node[right, font=\scriptsize] {yes} (br);
+\draw[arr] (fit.east) -- ++(0.45,0) |- ($(br.east)+(0,-0.14)$);
+\draw[arr] (fb.south) |- ($(br.east)+(0,0.14)$);
+\draw[arr] (br) -- (cf); \draw[arr] (cf) -- (ck); \draw[arr] (ck) -- (out);
+\end{tikzpicture}
+\end{document}

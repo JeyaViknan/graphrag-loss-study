@@ -1,0 +1,18 @@
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,patterns,shapes.geometric}
+\usepackage{amsmath,amssymb}
+\usepackage{mathptmx}
+\definecolor{lost}{HTML}{C2362D}
+\definecolor{kept}{HTML}{17875A}
+\definecolor{evid}{HTML}{3056D3}
+\definecolor{ink}{HTML}{1D1D1F}
+\definecolor{muted}{HTML}{6E6E73}
+\tikzset{
+  box/.style={draw=ink!70, rounded corners=2pt, align=center, fill=white, inner sep=4pt, font=\footnotesize},
+  arr/.style={-{Stealth[length=2mm]}, draw=ink!70, line width=0.6pt},
+  grp/.style={draw=muted!60, dashed, rounded corners=4pt, inner sep=7pt},
+  lossbox/.style={draw=lost!80, fill=lost!6, text=lost!85!black, rounded corners=2pt, align=left, font=\footnotesize, inner sep=4pt},
+  fixbox/.style={draw=kept!80, fill=kept!7, text=kept!65!black, rounded corners=2pt, align=left, font=\footnotesize, inner sep=4pt},
+  dec/.style={diamond, aspect=2.2, draw=ink!70, fill=evid!6, align=center, font=\footnotesize, inner sep=1.5pt},
+  lbl/.style={font=\footnotesize\bfseries, text=ink},
+}

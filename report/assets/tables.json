@@ -1,0 +1,730 @@
+{
+ "corpus": {
+  "header": [
+   "Quantity",
+   "Value"
+  ],
+  "rows": [
+   [
+    "Novels / questions",
+    "20 / 2,010"
+   ],
+   [
+    "Characters / tokens (o200k_base)",
+    "4,819,610 / 1,217,195"
+   ],
+   [
+    "Text units (1,200 tokens, 100 overlap)",
+    "1,024"
+   ],
+   [
+    "Extracted entities / relationships",
+    "14,825 / 533,441"
+   ],
+   [
+    "After pruning: entities / relationships",
+    "4,831 / 116,217"
+   ],
+   [
+    "Mean degree, pooled (median over novels)",
+    "48.1 (31.1)"
+   ],
+   [
+    "Communities, all levels",
+    "1,226"
+   ],
+   [
+    "Deepest level reached",
+    "5"
+   ],
+   [
+    "Summary input budget",
+    "8,000 tokens"
+   ],
+   [
+    "Largest novel's share of relationships",
+    "34%"
+   ],
+   [
+    "LLM calls",
+    "0"
+   ]
+  ]
+ },
+ "qtypes": {
+  "header": [
+   "Question type",
+   "Questions",
+   "Share"
+  ],
+  "rows": [
+   [
+    "Fact Retrieval",
+    "971",
+    "48.3%"
+   ],
+   [
+    "Complex Reasoning",
+    "610",
+    "30.3%"
+   ],
+   [
+    "Contextual Summarize",
+    "362",
+    "18.0%"
+   ],
+   [
+    "Creative Generation",
+    "67",
+    "3.3%"
+   ]
+  ]
+ },
+ "census": {
+  "header": [
+   "Level",
+   "Comm.",
+   "In scope",
+   "Boundary",
+   "Sub-summary",
+   "Budget",
+   "RGI in scope",
+   "Mean gain [95% CI]"
+  ],
+  "rows": [
+   [
+    "0 (root)",
+    "123",
+    "1.9",
+    "47.2",
+    "50.9",
+    "0.00",
+    "12.4",
+    "+25.2 [16.3, 35.4]"
+   ],
+   [
+    "1",
+    "389",
+    "7.8",
+    "71.8",
+    "20.4",
+    "0.00",
+    "27.4",
+    "+25.5 [20.6, 30.1]"
+   ],
+   [
+    "2 (default)",
+    "687",
+    "12.4",
+    "84.9",
+    "2.6",
+    "0.01",
+    "34.6",
+    "+24.6 [20.5, 28.3]"
+   ],
+   [
+    "3",
+    "797",
+    "12.1",
+    "87.9",
+    "0.0",
+    "0.01",
+    "35.6",
+    "+24.9 [20.9, 28.6]"
+   ]
+  ]
+ },
+ "exposure": {
+  "header": [
+   "Level",
+   "Index",
+   "In scope",
+   "Endpoint",
+   "Elsewhere",
+   "Absent"
+  ],
+  "rows": [
+   [
+    "0",
+    "GraphRAG",
+    "1.9",
+    "2.4",
+    "8.1",
+    "87.6"
+   ],
+   [
+    "",
+    "RGI",
+    "12.4",
+    "2.0",
+    "7.1",
+    "78.5"
+   ],
+   [
+    "1",
+    "GraphRAG",
+    "7.8",
+    "30.1",
+    "23.6",
+    "38.5"
+   ],
+   [
+    "",
+    "RGI",
+    "27.4",
+    "23.0",
+    "15.8",
+    "33.8"
+   ],
+   [
+    "2",
+    "GraphRAG",
+    "12.4",
+    "75.8",
+    "11.4",
+    "0.4"
+   ],
+   [
+    "",
+    "RGI",
+    "34.6",
+    "56.3",
+    "8.7",
+    "0.3"
+   ],
+   [
+    "3",
+    "GraphRAG",
+    "12.1",
+    "84.6",
+    "3.3",
+    "0.1"
+   ],
+   [
+    "",
+    "RGI",
+    "35.6",
+    "61.3",
+    "3.0",
+    "0.1"
+   ]
+  ]
+ },
+ "inputs": {
+  "header": [
+   "Level",
+   "Fit",
+   "Trimmed",
+   "Sub-summary",
+   "Units (GraphRAG)",
+   "Units (RGI)",
+   "Bridge records",
+   "Compact facts"
+  ],
+  "rows": [
+   [
+    "0",
+    "25",
+    "0",
+    "98",
+    "111",
+    "111",
+    "5,189",
+    "6,944"
+   ],
+   [
+    "1",
+    "227",
+    "32",
+    "130",
+    "1,033",
+    "1,001",
+    "15,374",
+    "7,396"
+   ],
+   [
+    "2",
+    "560",
+    "93",
+    "34",
+    "2,389",
+    "2,295",
+    "23,971",
+    "1,842"
+   ],
+   [
+    "3",
+    "683",
+    "113",
+    "1",
+    "2,793",
+    "2,679",
+    "27,312",
+    "73"
+   ]
+  ]
+ },
+ "selection": {
+  "header": [
+   "Level",
+   "Communities",
+   "Within-community relationships",
+   "Reach the input",
+   "Share",
+   "Upper bound",
+   "Cross-community in inputs"
+  ],
+  "rows": [
+   [
+    "0",
+    "123",
+    "61,415",
+    "2,841",
+    "4.6%",
+    "4,823",
+    "1,982"
+   ],
+   [
+    "1",
+    "380",
+    "32,684",
+    "1,728",
+    "5.3%",
+    "4,768",
+    "3,047"
+   ],
+   [
+    "2",
+    "504",
+    "14,319",
+    "897",
+    "6.3%",
+    "3,657",
+    "2,780"
+   ],
+   [
+    "3",
+    "200",
+    "3,681",
+    "345",
+    "9.4%",
+    "1,154",
+    "832"
+   ],
+   [
+    "4",
+    "19",
+    "370",
+    "53",
+    "14.3%",
+    "103",
+    "54"
+   ],
+   [
+    "5",
+    "4",
+    "104",
+    "17",
+    "16.3%",
+    "23",
+    "7"
+   ]
+  ]
+ },
+ "gold": {
+  "header": [
+   "Level",
+   "Questions",
+   "Missing a gold relationship (GraphRAG)",
+   "Same under RGI",
+   "Change [95% CI]",
+   "Gold relationships in scope (GraphRAG)",
+   "Same under RGI"
+  ],
+  "rows": [
+   [
+    "Level 0",
+    "840",
+    "95.6",
+    "48.3",
+    "-47.3 [43.9, 50.6]",
+    "4.8",
+    "56.3"
+   ],
+   [
+    "Level 1",
+    "840",
+    "88.1",
+    "23.8",
+    "-64.3 [61.0, 67.5]",
+    "13.9",
+    "79.6"
+   ],
+   [
+    "Level 2",
+    "840",
+    "79.9",
+    "15.2",
+    "-64.6 [61.4, 67.9]",
+    "25.5",
+    "87.9"
+   ],
+   [
+    "Level 3",
+    "840",
+    "79.4",
+    "14.9",
+    "-64.5 [61.2, 67.7]",
+    "26.3",
+    "88.2"
+   ]
+  ]
+ },
+ "gold_types": {
+  "header": [
+   "Question type (level 2)",
+   "Questions",
+   "GraphRAG",
+   "RGI",
+   "Change"
+  ],
+  "rows": [
+   [
+    "Complex Reasoning",
+    "317",
+    "84.5",
+    "17.0",
+    "-67.5"
+   ],
+   [
+    "Contextual Summarize",
+    "183",
+    "79.8",
+    "13.7",
+    "-66.1"
+   ],
+   [
+    "Creative Generation",
+    "52",
+    "98.1",
+    "15.4",
+    "-82.7"
+   ],
+   [
+    "Fact Retrieval",
+    "288",
+    "71.5",
+    "14.2",
+    "-57.3"
+   ]
+  ]
+ },
+ "linking": {
+  "header": [
+   "Step",
+   "Triples",
+   "Share"
+  ],
+  "rows": [
+   [
+    "Gold triples in the benchmark",
+    "4,371",
+    "100.0%"
+   ],
+   [
+    "Parsed into (head, relation, tail)",
+    "4,339",
+    "99.3%"
+   ],
+   [
+    "Both endpoints linked (token_set_ratio >= 85)",
+    "2,002",
+    "45.8%"
+   ],
+   [
+    "Resolved to a relationship in the graph",
+    "1,302",
+    "29.8%"
+   ]
+  ]
+ },
+ "chunk": {
+  "header": [
+   "Text-unit size",
+   "Units",
+   "Relationships",
+   "Mean degree",
+   "Level 2 GraphRAG",
+   "Level 2 RGI",
+   "Level 0 GraphRAG",
+   "Level 0 RGI"
+  ],
+  "rows": [
+   [
+    "1,200 (default)",
+    "1,024",
+    "116,217",
+    "48.1",
+    "12.4",
+    "34.6",
+    "1.9",
+    "12.4"
+   ],
+   [
+    "600",
+    "2,239",
+    "94,161",
+    "31.0",
+    "19.9",
+    "43.6",
+    "6.1",
+    "19.8"
+   ],
+   [
+    "300",
+    "5,584",
+    "89,273",
+    "19.2",
+    "27.6",
+    "57.0",
+    "26.1",
+    "41.8"
+   ]
+  ]
+ },
+ "ablation": {
+  "header": [
+   "Configuration",
+   "Level 2 in scope",
+   "Level 2 bridged",
+   "Level 0 in scope",
+   "Level 0 bridged"
+  ],
+  "rows": [
+   [
+    "GraphRAG (baseline)",
+    "12.4",
+    "n/a",
+    "1.9",
+    "n/a"
+   ],
+   [
+    "No bridge records (b = 0)",
+    "14.7",
+    "0.0",
+    "13.4",
+    "0.0"
+   ],
+   [
+    "Bridge share b = 0.06",
+    "29.4",
+    "15.0",
+    "13.2",
+    "2.6"
+   ],
+   [
+    "Default (b = 0.12, f = 0.8, m = 2)",
+    "34.6",
+    "20.6",
+    "12.4",
+    "4.5"
+   ],
+   [
+    "Bridge share b = 0.24",
+    "37.2",
+    "24.5",
+    "11.1",
+    "6.4"
+   ],
+   [
+    "Full-item cutoff f = 0.6",
+    "35.5",
+    "20.6",
+    "21.5",
+    "4.5"
+   ],
+   [
+    "Full-item cutoff f = 1.0 (no compact tier)",
+    "31.2",
+    "18.8",
+    "2.3",
+    "0.4"
+   ],
+   [
+    "Minimum support m = 1",
+    "49.8",
+    "35.8",
+    "13.0",
+    "5.6"
+   ],
+   [
+    "Minimum support m = 3",
+    "21.9",
+    "7.7",
+    "12.2",
+    "2.8"
+   ]
+  ]
+ },
+ "sim": {
+  "header": [
+   "Level (communities)",
+   "Retained, original",
+   "Retained, RGI",
+   "Evidence retrieved, original",
+   "Evidence retrieved, RGI",
+   "Judged correct, original",
+   "Judged correct, RGI"
+  ],
+  "rows": [
+   [
+    "Leaf (22)",
+    "72.6",
+    "78.8",
+    "49.2",
+    "75.7",
+    "41.7",
+    "56.2"
+   ],
+   [
+    "Community (8)",
+    "84.2",
+    "88.4",
+    "69.1",
+    "84.7",
+    "52.1",
+    "62.5"
+   ],
+   [
+    "Higher (3)",
+    "46.3",
+    "65.2",
+    "80.2",
+    "87.0",
+    "60.4",
+    "66.7"
+   ],
+   [
+    "Root (1)",
+    "14.4",
+    "23.4",
+    "54.3",
+    "71.2",
+    "43.8",
+    "50.0"
+   ]
+  ]
+ },
+ "sim_sweeps": {
+  "header": [
+   "Setting",
+   "Leaf evidence retrieved (original)",
+   "Leaf evidence retrieved (RGI)",
+   "Root relationships retained (RGI)"
+  ],
+  "rows": [
+   [
+    "Reports read K = 2",
+    "48.5",
+    "74.5",
+    "23.4"
+   ],
+   [
+    "Reports read K = 3",
+    "49.2",
+    "75.7",
+    "23.4"
+   ],
+   [
+    "Reports read K = 6",
+    "49.2",
+    "76.2",
+    "23.4"
+   ],
+   [
+    "Bridge share 0",
+    "49.2",
+    "49.2",
+    "23.4"
+   ],
+   [
+    "Bridge share 0.06",
+    "49.2",
+    "75.7",
+    "23.4"
+   ],
+   [
+    "Bridge share 0.12",
+    "49.2",
+    "75.7",
+    "23.4"
+   ],
+   [
+    "Bridge share 0.24",
+    "49.2",
+    "75.7",
+    "23.4"
+   ],
+   [
+    "Bridge threshold weight 3",
+    "49.2",
+    "89.6",
+    "23.4"
+   ],
+   [
+    "Bridge threshold weight 4",
+    "49.2",
+    "75.7",
+    "23.4"
+   ],
+   [
+    "Bridge threshold weight 5",
+    "49.2",
+    "61.4",
+    "23.4"
+   ],
+   [
+    "Bridge threshold weight off",
+    "49.2",
+    "49.2",
+    "23.4"
+   ],
+   [
+    "Full-item cutoff 0.6",
+    "49.2",
+    "75.7",
+    "33.7"
+   ],
+   [
+    "Full-item cutoff 0.8",
+    "49.2",
+    "75.7",
+    "23.4"
+   ],
+   [
+    "Full-item cutoff 1.0",
+    "49.2",
+    "75.7",
+    "14.5"
+   ],
+   [
+    "Budget 4,000 tokens",
+    "49.2",
+    "75.7",
+    "11.6"
+   ],
+   [
+    "Budget 8,000 tokens",
+    "49.2",
+    "75.7",
+    "23.4"
+   ],
+   [
+    "Budget 16,000 tokens",
+    "49.2",
+    "75.7",
+    "48.8"
+   ]
+  ]
+ }
+}

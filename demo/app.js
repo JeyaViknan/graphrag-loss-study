@@ -149,18 +149,112 @@
     }
 
     /* ---------- drawing ---------- */
-    function progress() {
-      if (!trans) return 1;
-      const t = Math.min(1, (performance.now() - trans.t0) / 440);
-      return 1 - Math.pow(1 - t, 3);
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const span = (t, a, b) => Math.max(0, Math.min(1, (t - a) / (b - a)));
+    // the graph cross-fades in 440 ms; a level change then also re-traces the evidence path
+    function progress() { return trans ? ease(Math.min(1, (performance.now() - trans.t0) / 440)) : 1; }
+    function beginTransition(kind) {
+      trans = reduceMotion ? null : { kind: kind, method: S.method, level: S.level, t0: performance.now(), dur: kind === "level" ? traceMs(Q()) : 440 };
     }
-    function beginTransition() { trans = reduceMotion ? null : { method: S.method, level: S.level, t0: performance.now() }; }
     let raf = 0;
     function requestDraw() { if (!raf) raf = requestAnimationFrame(frame); }
     function frame() {
       raf = 0;
       draw();
-      if (trans) { if (progress() >= 1) { trans = null; draw(); } else requestDraw(); }
+      if (trans) { if (performance.now() - trans.t0 >= trans.dur) { trans = null; draw(); } else requestDraw(); }
+    }
+
+    /* ---------- evidence trace ----------
+       On a level change the question's evidence path is traced again in two passes. First the
+       relationships retrieved at the new level are connected, each growing out from an entity
+       already reached, so the retrieved context builds up as a tree and every entity reached
+       lights up. Then the missed relationships are drawn from the retrieved side: a lost one
+       breaks off halfway in red, one whose summary is not read is drawn in grey, and each
+       evidence entity left unreached is marked. When everything is retrieved, only the first
+       pass runs. */
+    const TRACE_LEAD = 320, TRACE_GAP = 240, TRACE_TAIL = 420;
+    const hopMs = (n) => Math.max(260, Math.min(440, 2000 / Math.max(1, n)));
+    const traceMs = (q) => TRACE_LEAD + q.hopIdx.length * hopMs(q.hopIdx.length) + TRACE_GAP + TRACE_TAIL;
+    const litNodes = (ev) => {
+      const s = new Set();
+      ev.hops.forEach((h) => { if (h.retrieved) { s.add(E[h.i].s); s.add(E[h.i].t); } });
+      return s;
+    };
+    // Order of the trace: retrieved links first, each one starting from an entity already
+    // reached (or, when none is, the next link in the path); then the missed links, again
+    // starting from the retrieved side where possible.
+    function traceSeq(q, ev) {
+      const seen = new Set(), seq = [];
+      const run = (idx, grow) => {
+        const left = idx.slice();
+        while (left.length) {
+          let k = left.findIndex((j) => { const e = hopEnds(q, j); return seen.has(e[0].i) || seen.has(e[1].i); });
+          if (k < 0) k = 0;
+          const j = left.splice(k, 1)[0], e = hopEnds(q, j);
+          let a = e[0].i, b = e[1].i;
+          if (seen.has(b) && !seen.has(a)) { const t = a; a = b; b = t; }
+          seq.push({ j: j, a: a, b: b });
+          if (grow) { seen.add(a); seen.add(b); }
+        }
+      };
+      const all = ev.hops.map((h, j) => j);
+      run(all.filter((j) => ev.hops[j].retrieved), true);
+      const nRet = seq.length;
+      run(all.filter((j) => !ev.hops[j].retrieved), false);
+      return { seq: seq, nRet: nRet };
+    }
+    function partial(a, b, f, color, width, dash) {
+      const x = px[a] + (px[b] - px[a]) * f, y = py[a] + (py[b] - py[a]) * f;
+      ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash || []); ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(px[a], py[a]); ctx.lineTo(x, y); ctx.stroke(); ctx.setLineDash([]);
+      return [x, y];
+    }
+    function drawTrace(q, evFrom, evTo, el, isHot) {
+      const hm = hopMs(q.hopIdx.length), lead = ease(Math.min(1, el / TRACE_LEAD));
+      const plan = traceSeq(q, evTo), litEnd = litNodes(evTo), litBefore = litNodes(evFrom);
+      const lit = new Map(), missed = new Map(), marked = new Set(), rings = [];
+      // the previous level's path fades out first
+      q.ents.forEach((i) => (litBefore.has(i) ? lit : missed).set(i, 1 - lead));
+      if (lead < 1) evFrom.hops.forEach((h) => drawHop(h, 1 - lead, false));
+      plan.seq.forEach((s, k) => {
+        const h = evTo.hops[s.j], cls = hopClass(h), a = s.a, b = s.b;
+        const t0 = TRACE_LEAD + k * hm + (k >= plan.nRet ? TRACE_GAP : 0), p = span(el, t0, t0 + hm), since = el - (t0 + hm);
+        if (p <= 0) {
+          // not traced yet: a faint guide shows the link that is still to come
+          ctx.globalAlpha = 0.35 * lead; partial(a, b, 1, C["ink-3"], 1, [2, 4]); ctx.globalAlpha = 1;
+          return;
+        }
+        if (cls === "lost") {
+          const settle = span(p, 0.55, 1);
+          if (settle < 1) { ctx.globalAlpha = 1 - settle; partial(a, b, 0.5 * ease(span(p, 0, 0.55)), C.lost, 2.4); }
+          if (settle > 0) drawHop(h, ease(settle), isHot(h.i));
+        } else if (p < 1) {
+          ctx.globalAlpha = 1;
+          const tip = partial(a, b, ease(p), cls === "rec" ? C.kept : cls === "ok" ? C.evid : C["ink-3"], 2.7);
+          ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.arc(tip[0], tip[1], 3, 0, Math.PI * 2); ctx.fill();
+        } else drawHop(h, 1, isHot(h.i));
+        ctx.globalAlpha = 1;
+        if (p < 1) return;
+        if (h.retrieved) {
+          lit.set(a, 1); lit.set(b, 1);
+          if (since < 360) rings.push([b, since / 360, C.evid]);
+        } else {
+          // this link failed: point out the evidence entities it leaves unreached
+          [a, b].forEach((i) => {
+            if (litEnd.has(i) || marked.has(i)) return;   // retrieved through another link, or already marked
+            marked.add(i);
+            missed.set(i, Math.max(missed.get(i) || 0, ease(Math.min(1, since / 300))));
+            if (since < 420) rings.push([i, since / 420, C.lost]);
+          });
+        }
+      });
+      // one ring marks the moment an entity is retrieved (blue) or found missing (red)
+      rings.forEach(([i, s, col]) => {
+        ctx.globalAlpha = 0.6 * (1 - s); ctx.strokeStyle = col; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(px[i], py[i], nodeR(i) + 4 + 9 * ease(s), 0, Math.PI * 2); ctx.stroke();
+      });
+      ctx.globalAlpha = 1;
+      return { lit: (i) => lit.get(i) || 0, missed: (i) => missed.get(i) || 0 };
     }
 
     const STY = { 0: ["edge", 0.7, null, "butt"], 1: ["lost-faint", 0.8, [3, 3], "butt"], 2: ["lost-faint", 1.1, [0.6, 2.8], "round"], 3: ["kept-faint", 1, null, "butt"] };
@@ -204,14 +298,21 @@
       });
 
       const evTo = M.evaluate(q, toL, toM), evFrom = trans ? M.evaluate(q, fromL, fromM) : evTo;
-      q.hopIdx.forEach((i, j) => {
-        const hot = S.hot === i || kindId(S.hover, "edge") === i || kindId(S.sel, "edge") === i;
-        const ht = evTo.hops[j], hf = evFrom.hops[j];
-        if (hopClass(ht) === hopClass(hf) && ht.state === hf.state) drawHop(ht, 1, hot);
-        else { drawHop(hf, 1 - k, false); drawHop(ht, k, hot); }
-      });
+      const isHot = (i) => S.hot === i || kindId(S.hover, "edge") === i || kindId(S.sel, "edge") === i;
+      let marks;
+      if (trans && trans.kind === "level" && fromL !== toL) marks = drawTrace(q, evFrom, evTo, performance.now() - trans.t0, isHot);
+      else {
+        q.hopIdx.forEach((i, j) => {
+          const ht = evTo.hops[j], hf = evFrom.hops[j];
+          if (hopClass(ht) === hopClass(hf) && ht.state === hf.state) drawHop(ht, 1, isHot(i));
+          else { drawHop(hf, 1 - k, false); drawHop(ht, k, isHot(i)); }
+        });
+        const lf = litNodes(evFrom), lt = litNodes(evTo);
+        const lit = (i) => (lf.has(i) ? 1 - k : 0) + (lt.has(i) ? k : 0);
+        marks = { lit: lit, missed: (i) => 1 - Math.min(1, lit(i)) };
+      }
 
-      drawNodes(evNodes, focusNode);
+      drawNodes(evNodes, focusNode, marks.lit, marks.missed);
       drawLabels(q, focusNode);
     }
 
@@ -271,7 +372,9 @@
       ctx.globalAlpha = 1; ctx.lineCap = "butt";
     }
 
-    function drawNodes(evNodes, focusNode) {
+    // lit(i): how far evidence entity i is shown as retrieved (filled) rather than hollow;
+    // missed(i): how far it carries the dashed red mark of an entity left unretrieved
+    function drawNodes(evNodes, focusNode, lit, missed) {
       const strong = new Set();
       if (focusNode != null) incident[focusNode].forEach((i) => { strong.add(E[i].s); strong.add(E[i].t); });
       ["node", "node-core"].forEach((tok) => {
@@ -285,10 +388,20 @@
         ctx.fill();
       });
       evNodes.forEach((i) => {
-        const r = nodeR(i) + 1.6;
-        ctx.fillStyle = C.bg; ctx.beginPath(); ctx.arc(px[i], py[i], r + 2, 0, Math.PI * 2); ctx.fill();
-        ctx.fillStyle = C.evid; ctx.beginPath(); ctx.arc(px[i], py[i], r, 0, Math.PI * 2); ctx.fill();
+        const r = nodeR(i) + 1.6, on = Math.min(1, lit(i));
+        ctx.globalAlpha = 1; ctx.fillStyle = C.bg; ctx.beginPath(); ctx.arc(px[i], py[i], r + 2, 0, Math.PI * 2); ctx.fill();
+        if (on > 0.01) { ctx.globalAlpha = on; ctx.fillStyle = C.evid; ctx.beginPath(); ctx.arc(px[i], py[i], r, 0, Math.PI * 2); ctx.fill(); }
+        if (on < 0.99) {
+          ctx.globalAlpha = 1 - on; ctx.strokeStyle = C.evid; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.arc(px[i], py[i], r - 0.8, 0, Math.PI * 2); ctx.stroke();
+        }
+        const m = missed(i);
+        if (m > 0.01) {
+          ctx.globalAlpha = 0.9 * m; ctx.strokeStyle = C.lost; ctx.lineWidth = 1.2; ctx.setLineDash([2.5, 2.5]);
+          ctx.beginPath(); ctx.arc(px[i], py[i], r + 3.5, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+        }
       });
+      ctx.globalAlpha = 1;
       if (focusNode != null) {
         ctx.strokeStyle = C.ink; ctx.lineWidth = 1.5;
         ctx.beginPath(); ctx.arc(px[focusNode], py[focusNode], nodeR(focusNode) + 4.5, 0, Math.PI * 2); ctx.stroke();
@@ -619,13 +732,13 @@
     /* ---------- actions ---------- */
     function setMethod(m) {
       if (m === S.method) return;
-      beginTransition(); S.method = m;
+      beginTransition("method"); S.method = m;
       renderCompare(); renderContext(); renderStage(); requestDraw();
     }
     function setLevel(L) {
       L = Math.max(0, Math.min(3, L));
       if (L === S.level) return;
-      beginTransition(); S.level = L;
+      beginTransition("level"); S.level = L;
       renderCompare(); renderContext(); renderMetrics(); renderLevel(); renderStage(); requestDraw();
     }
     function setQuery(i) {

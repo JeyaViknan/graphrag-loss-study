@@ -552,8 +552,9 @@ def main() -> None:
     ap.add_argument("--novels", type=int, default=None, help="limit for a smoke run")
     ap.add_argument("--chunk-size", type=int, default=CHUNK.size, help="sensitivity runs only; the default is GraphRAG's")
     ap.add_argument("--no-ablations", action="store_true")
+    ap.add_argument("--out", type=Path, default=None, help="write the result files here instead of paper/results")
     args = ap.parse_args()
-    out = OUT if args.chunk_size == CHUNK.size else OUT / f"chunk{args.chunk_size}"
+    out = args.out or (OUT if args.chunk_size == CHUNK.size else OUT / f"chunk{args.chunk_size}")
     t0 = time.time()
     tok = Tok()
     ctx = Contexts(tok)

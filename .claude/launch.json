@@ -4,8 +4,9 @@
     {
       "name": "xray-demo",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8000", "--directory", "demo"],
-      "port": 8000
+      "runtimeArgs": ["-m", "http.server", "8010", "--bind", "127.0.0.1", "--directory", "demo"],
+      "port": 8010,
+      "autoPort": false
     }
   ]
 }

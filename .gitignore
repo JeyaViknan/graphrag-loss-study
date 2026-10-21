@@ -24,3 +24,7 @@ data/
 
 # NOT ignored, deliberately: GATES.md, configs/frozen_settings.yaml,
 # output/MANIFEST.sha256, results/, reports/, figs/
+
+# --- Firebase Hosting: local deploy cache and CLI logs ---
+.firebase/
+firebase-debug.log

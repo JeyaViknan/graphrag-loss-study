@@ -14,6 +14,7 @@ not read them, so the counts below do not depend on an LLM.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
@@ -47,6 +48,9 @@ def frames(ix: dict) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", type=Path, default=C.OUT, help="write selection_loss.csv here instead of paper/results")
+    args = ap.parse_args()
     tok = C.Tok()
     corpus = json.loads((C.DATA / "novel.json").read_text(encoding="utf-8"))
     rows = []
@@ -80,7 +84,8 @@ def main() -> None:
         print(doc["corpus_name"], f"{time.time() - t0:.0f}s", flush=True)
 
     df = pd.DataFrame(rows)
-    df.to_csv(C.OUT / "selection_loss.csv", index=False)
+    args.out.mkdir(parents=True, exist_ok=True)
+    df.to_csv(args.out / "selection_loss.csv", index=False)
     agg = df.groupby("level")[["communities", "entities", "intra", "intra_in_input", "bound", "cross_in_input"]].sum()
     agg["share_kept"] = agg["intra_in_input"] / agg["intra"]
     print(agg.to_string())
